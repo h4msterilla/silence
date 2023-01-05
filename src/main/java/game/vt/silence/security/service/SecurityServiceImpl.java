@@ -7,7 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-public class SecurityServiceImpl implements SecurityService{
+public class SecurityServiceImpl implements SecurityService {
 
     @Autowired
     UserDetailsService userDetailsService;
@@ -21,16 +21,21 @@ public class SecurityServiceImpl implements SecurityService{
     }
 
     @Override
-    public void autoLogin(String username, String password) {
+    public boolean autoLogin(String username, String password) {
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails,password,userDetails.getAuthorities());
-        authenticationManager.authenticate(token);
-        if(token.isAuthenticated()){
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
+        try {
+            authenticationManager.authenticate(token);
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+        if (token.isAuthenticated()) {
             SecurityContextHolder.getContext().setAuthentication(token);
             System.out.printf("Auto login %s successfully!\n", username);
+            return true;
         }
-
-
+        return false;
     }
 }
