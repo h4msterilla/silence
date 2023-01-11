@@ -19,7 +19,14 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public String findLoggedInUsername() {
-        return null;
+        String s;
+        try {
+           s = SecurityContextHolder.getContext().getAuthentication().getName();
+        }catch (NullPointerException e){
+            return null;
+        }
+        if(s.equalsIgnoreCase("anonymousUser")) s = null;
+        return s;
     }
 
     @Override
@@ -39,5 +46,13 @@ public class SecurityServiceImpl implements SecurityService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void nonPassAutoLogin(String username){
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(token);
+        System.out.printf("Non pass auto login %s successfully!\n", username);
     }
 }
