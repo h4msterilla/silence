@@ -6,4 +6,6 @@ public interface SecurityService {
 
     boolean autoLogin(String username, String password);
 
+    void nonPassAutoLogin(String username);
+
 }
