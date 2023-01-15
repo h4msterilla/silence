@@ -11,4 +11,9 @@ public class MainController {
         return "hello";
     }
 
+    @GetMapping("/s")
+    public String forAuthUserPage(){
+        return "forAuthUserPage";
+    }
+
 }

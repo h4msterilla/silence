@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -41,12 +42,12 @@ public class AuthController {
 
     @SneakyThrows
     @PostMapping("/login")
-    public String login_in(@RequestBody String json){
+    public String login_in(@RequestBody String json, HttpServletResponse response){
         VT_User user_login = jackson.readValue(json, VT_User.class);
 
         if(userService.findByUsername(user_login.getUsername())==null) return "wrong username";
 
-        boolean isAuth = securityService.autoLogin(user_login.getUsername(), user_login.getPassword());
+        boolean isAuth = securityService.autoLogin(user_login.getUsername(), user_login.getPassword(), response);
 
         if(isAuth)
             return "OK";

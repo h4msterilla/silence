@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -41,13 +42,13 @@ public class RegController {
 
     @SneakyThrows
     @PostMapping("/reg")
-    public String reg_in(@RequestBody String json){
+    public String reg_in(@RequestBody String json, HttpServletResponse response){
         VT_User user_reg = jackson.readValue(json, VT_User.class);
 
         if(userService.findByUsername(user_reg.getUsername())!=null) return "username already used";
         user_reg.setEncodedPassword(encoder.encode(user_reg.getPassword()));
         userService.save(user_reg);
-        securityService.autoLogin(user_reg.getUsername(), user_reg.getPassword());
+        securityService.autoLogin(user_reg.getUsername(), user_reg.getPassword(), response);
 
         return "OK";
     }
