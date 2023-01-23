@@ -4,6 +4,7 @@ import io.jsonwebtoken.*;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -18,10 +19,8 @@ public class JwtUtil {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtil.class);
 
     @Getter
-    private String secret = "somesecretkeyvaluelololo";
-    //@Autowired
-    //SecurityService securityService;
-
+    @Value("${jwt.secret}")
+    private String secret;
 
     public String generateToken(String username) {
         Date now = new Date();
@@ -58,14 +57,6 @@ public class JwtUtil {
 
         return false;
     }
-
-    /*public void processJwtHeader(HttpServletResponse response){
-        if(securityService.findLoggedInUsername() == null){
-                clearJwtHeader(response);
-            return;
-        }
-        setJwtHeader(response);
-    }*/
 
     public void setJwtHeader(HttpServletResponse response, UserDetails userDetails){
         String jwt = generateToken(userDetails.getUsername());
