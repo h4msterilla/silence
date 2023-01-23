@@ -13,4 +13,8 @@ public interface VT_CharacterRepo extends CrudRepository<VT_Character, Long> {
     nativeQuery = true)
     VT_Character findByValue_name(@Param("value_name") String value_name);
 
+    @Query(value = "SELECT EXISTS(SELECT * FROM vt_character WHERE value_name = :value_name)",
+    nativeQuery = true)
+    boolean existsByValue_name(@Param("value_name") String value_name);
+
 }

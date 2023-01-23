@@ -1,5 +1,7 @@
 package game.vt.silence.game_mech.service;
 
+import game.vt.silence.game_mech.model.CharacterNotFoundException;
+import game.vt.silence.game_mech.model.NameOccupiedException;
 import game.vt.silence.game_mech.model.VT_Character;
 import game.vt.silence.game_mech.model.WrongCharacterValueNameException;
 import game.vt.silence.game_mech.repo.VT_CharacterRepo;
@@ -17,8 +19,14 @@ public class VT_CharacterServiceImpl implements VT_CharacterService {
     VT_CharacterRepo repo;
 
     @Override
-    public VT_Character getVT_CharacterByName(String name) {
-        return repo.findByValue_name(name);
+    public VT_Character getVT_CharacterByName(String value_name) throws CharacterNotFoundException {
+        if(!existsVT_CharacterByName(value_name)) throw new CharacterNotFoundException();
+        return repo.findByValue_name(value_name);
+    }
+
+    @Override
+    public boolean existsVT_CharacterByName(String value_name) {
+        return repo.existsByValue_name(value_name);
     }
 
     @Override
@@ -27,15 +35,19 @@ public class VT_CharacterServiceImpl implements VT_CharacterService {
     }
 
     @Override
-    public void changeCharValueByName(VT_Character character, String valueName,String up_down) throws WrongCharacterValueNameException {
-        character.changeValueByName(valueName,up_down);
+    public void changeCharValueByName(String character, String valueName, String up_down) throws WrongCharacterValueNameException, CharacterNotFoundException {
+        VT_Character vt_Character = getVT_CharacterByName(character);
+        vt_Character.changeValueByName(valueName, up_down);
     }
 
     @Override
-    public void createCharacter(String value_name) {
+    public void createCharacter(String value_name) throws WrongCharacterValueNameException, NameOccupiedException {
+        if (repo.existsByValue_name(value_name)) throw new NameOccupiedException();
+
         VT_Character character = new VT_Character();
         character.setValue_name(value_name);
         saveCharacter(character);
+        logger.info("create new character - {}",character.getValue_name());
     }
 
 }
