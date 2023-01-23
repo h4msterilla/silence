@@ -38,6 +38,7 @@ public class VT_CharacterServiceImpl implements VT_CharacterService {
     public void changeCharValueByName(String character, String valueName, String up_down) throws WrongCharacterValueNameException, CharacterNotFoundException {
         VT_Character vt_Character = getVT_CharacterByName(character);
         vt_Character.changeValueByName(valueName, up_down);
+        saveCharacter(vt_Character);
     }
 
     @Override
