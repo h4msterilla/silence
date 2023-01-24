@@ -5,6 +5,7 @@ import game.vt.silence.security.api.json.Reg_RQ;
 import game.vt.silence.security.api.json.Reg_RS;
 import game.vt.silence.security.model.VT_UserUsernameOccupiedException;
 import game.vt.silence.security.service.SecurityService;
+import game.vt.silence.security.validation.PasswordValidator;
 import game.vt.silence.security.validation.UsernameValidator;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,12 @@ public class RegController {
             UsernameValidator.validate(request.getUsername());
         } catch (ValidationException e) {
             return jackson.writeValueAsString(new Reg_RS("wrong username",e.getMessage()));
+        }
+
+        try {
+            PasswordValidator.validate(request.getPassword());
+        } catch (ValidationException e) {
+            return jackson.writeValueAsString(new Reg_RS("wrong password",e.getMessage()));
         }
 
         try {
