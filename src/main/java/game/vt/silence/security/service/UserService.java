@@ -6,6 +6,8 @@ public interface UserService {
 
     void save(VT_User user);
 
+    boolean existsByUsername(String username);
+
     VT_User findByUsername(String username);
 
 }

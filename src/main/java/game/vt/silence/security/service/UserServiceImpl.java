@@ -23,6 +23,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean existsByUsername(String username) {
+        return userRepo.existsByUsername(username);
+    }
+
+    @Override
     public VT_User findByUsername(String username) {
         if (userRepo.existsByUsername(username))
             return userRepo.findByUsername(username);
