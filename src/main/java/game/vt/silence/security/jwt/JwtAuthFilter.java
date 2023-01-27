@@ -28,16 +28,22 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         String jwt = parseJwt(request);
-
         logger.info("get token: {}", jwt);
 
-        if (jwt != null && jwtUtil.validateJwtToken(jwt)) {
-            String username = jwtUtil.getUsernameFromJwtToken(jwt);
-            if (userService.findByUsername(username) != null)
-                securityService.nonPassAutoLogin(username, response);
+        if (jwt == null | !jwtUtil.validateJwtToken(jwt)) {
+            filterChain.doFilter(request, response);
+            return;
         }
 
-        filterChain.doFilter(request,response);
+        String username = jwtUtil.getUsernameFromJwtToken(jwt);
+
+        if (!userService.existsByUsername(username)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        securityService.nonPassAutoLogin(username, response);
+        filterChain.doFilter(request, response);
     }
 
 

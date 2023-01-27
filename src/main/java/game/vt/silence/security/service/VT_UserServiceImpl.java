@@ -2,6 +2,7 @@ package game.vt.silence.security.service;
 
 import game.vt.silence.game_mech.model.VT_Character;
 import game.vt.silence.security.model.VT_User;
+import game.vt.silence.security.model.VT_UserNotFoundException;
 import game.vt.silence.security.repo.VT_UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,11 +30,10 @@ public class VT_UserServiceImpl implements VT_UserService {
     }
 
     @Override
-    public VT_User findByUsername(String username) {
-        if (userRepo.existsByUsername(username))
-            return userRepo.findByUsername(username);
+    public VT_User findByUsername(String username) throws VT_UserNotFoundException {
+        if(!userRepo.existsByUsername(username)) throw new VT_UserNotFoundException();
 
-        return null;
+        return userRepo.findByUsername(username);
     }
 
     @Override
