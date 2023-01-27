@@ -29,7 +29,7 @@ public class SecurityServiceImpl implements SecurityService {
     @Autowired
     JwtUtil jwtUtil;
     @Autowired
-    UserService userService;
+    VT_UserService userService;
     @Autowired
     BCryptPasswordEncoder encoder;
 
@@ -44,6 +44,17 @@ public class SecurityServiceImpl implements SecurityService {
         if (s.equalsIgnoreCase("anonymousUser")) s = null;
         logger.info("findLoggedInUsername = {}", s);
         return s;
+    }
+
+    @Override
+    public VT_User findLoggedInVT_User() throws VT_UserNotFoundException {
+        String username = findLoggedInUsername();
+        if(username == null) return null;
+
+        VT_User user = userService.findByUsername(username);
+
+        if(username == null) throw new VT_UserNotFoundException();
+        return user;
     }
 
     @Override

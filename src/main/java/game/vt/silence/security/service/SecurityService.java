@@ -1,5 +1,6 @@
 package game.vt.silence.security.service;
 
+import game.vt.silence.security.model.VT_User;
 import game.vt.silence.security.model.VT_UserNotFoundException;
 import game.vt.silence.security.model.VT_UserUsernameOccupiedException;
 import game.vt.silence.security.model.VT_UserWrongPasswordException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 public interface SecurityService {
 
     String findLoggedInUsername();
+
+    VT_User findLoggedInVT_User() throws VT_UserNotFoundException;
 
     void regUser(String username, String password) throws VT_UserUsernameOccupiedException;
 
