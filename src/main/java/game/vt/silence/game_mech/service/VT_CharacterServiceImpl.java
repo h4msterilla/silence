@@ -60,6 +60,7 @@ public class VT_CharacterServiceImpl implements VT_CharacterService {
         userService.addVT_Character(user,character);
         character.setVt_user(user);
         repo.save(character);
+        logger.info("add character {} to user {}",character.getValue_name(),user.getUsername());
     }
 
 }
