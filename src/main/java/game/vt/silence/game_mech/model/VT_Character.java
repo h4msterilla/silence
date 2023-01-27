@@ -1,5 +1,6 @@
 package game.vt.silence.game_mech.model;
 
+import game.vt.silence.security.model.VT_User;
 import lombok.*;
 import org.springframework.util.ReflectionUtils;
 
@@ -42,6 +43,9 @@ public class VT_Character {
     private static final String PHENOTYPE_PIPER = "Трубач";
     @Transient
     private static final String PHENOTYPE_SOLID = "Солид";
+
+    @ManyToOne
+    private VT_User vt_user;
 
     private String value_name = ""; //финальное
     private String value_self = ""; //меняемое

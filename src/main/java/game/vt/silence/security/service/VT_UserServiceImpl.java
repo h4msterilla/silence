@@ -1,5 +1,6 @@
 package game.vt.silence.security.service;
 
+import game.vt.silence.game_mech.model.VT_Character;
 import game.vt.silence.security.model.VT_User;
 import game.vt.silence.security.repo.VT_UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class VT_UserServiceImpl implements VT_UserService {
 
     @Autowired
     VT_UserRepo userRepo;
@@ -17,8 +18,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(VT_User user) {
-        user.setEncodedPassword(encoder.encode(user.getPassword()));
-
+        if(user.getPassword()!=null)
+            user.setEncodedPassword(encoder.encode(user.getPassword()));
         userRepo.save(user);
     }
 
@@ -33,5 +34,11 @@ public class UserServiceImpl implements UserService {
             return userRepo.findByUsername(username);
 
         return null;
+    }
+
+    @Override
+    public void addVT_Character(VT_User user, VT_Character character) {
+        user.addVT_Character(character);
+        userRepo.save(user);
     }
 }

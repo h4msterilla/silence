@@ -5,6 +5,8 @@ import game.vt.silence.game_mech.model.NameOccupiedException;
 import game.vt.silence.game_mech.model.VT_Character;
 import game.vt.silence.game_mech.model.WrongCharacterValueNameException;
 import game.vt.silence.game_mech.repo.VT_CharacterRepo;
+import game.vt.silence.security.model.VT_User;
+import game.vt.silence.security.service.VT_UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ public class VT_CharacterServiceImpl implements VT_CharacterService {
 
     @Autowired
     VT_CharacterRepo repo;
+    @Autowired
+    VT_UserService userService;
 
     @Override
     public VT_Character getVT_CharacterByName(String value_name) throws CharacterNotFoundException {
@@ -49,6 +53,13 @@ public class VT_CharacterServiceImpl implements VT_CharacterService {
         character.setValue_name(value_name);
         saveCharacter(character);
         logger.info("create new character - {}",character.getValue_name());
+    }
+
+    @Override
+    public void addVT_Character(VT_User user, VT_Character character) {
+        userService.addVT_Character(user,character);
+        character.setVt_user(user);
+        repo.save(character);
     }
 
 }

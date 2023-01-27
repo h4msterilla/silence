@@ -1,7 +1,7 @@
 package game.vt.silence.security.jwt;
 
 import game.vt.silence.security.service.SecurityService;
-import game.vt.silence.security.service.UserService;
+import game.vt.silence.security.service.VT_UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +20,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     JwtUtil jwtUtil;
 
     @Autowired
-    UserService userService;
+    VT_UserService userService;
     @Autowired
     SecurityService securityService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
-        /*if(request.getServletPath().equalsIgnoreCase("/logout")) {
-            jwtUtil.clearJwtHeader(response);
-            filterChain.doFilter(request, response);
-            return;
-        }*/
 
         String jwt = parseJwt(request);
 

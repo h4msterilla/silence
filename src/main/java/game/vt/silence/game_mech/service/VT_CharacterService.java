@@ -4,6 +4,7 @@ import game.vt.silence.game_mech.model.CharacterNotFoundException;
 import game.vt.silence.game_mech.model.NameOccupiedException;
 import game.vt.silence.game_mech.model.VT_Character;
 import game.vt.silence.game_mech.model.WrongCharacterValueNameException;
+import game.vt.silence.security.model.VT_User;
 
 public interface VT_CharacterService {
 
@@ -16,5 +17,7 @@ public interface VT_CharacterService {
     void changeCharValueByName(String character, String valueName, String up_down) throws WrongCharacterValueNameException, CharacterNotFoundException;
 
     void createCharacter(String value_name) throws WrongCharacterValueNameException, NameOccupiedException;
+
+    void addVT_Character(VT_User user, VT_Character character);
 
 }
