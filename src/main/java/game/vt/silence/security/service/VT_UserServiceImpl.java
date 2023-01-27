@@ -19,7 +19,7 @@ public class VT_UserServiceImpl implements VT_UserService {
 
     @Override
     public void save(VT_User user) {
-        if(user.getPassword()!=null)
+        if (user.getPassword() != null)
             user.setEncodedPassword(encoder.encode(user.getPassword()));
         userRepo.save(user);
     }
@@ -31,8 +31,7 @@ public class VT_UserServiceImpl implements VT_UserService {
 
     @Override
     public VT_User findByUsername(String username) throws VT_UserNotFoundException {
-        if(!userRepo.existsByUsername(username)) throw new VT_UserNotFoundException();
-
+        if (!userRepo.existsByUsername(username)) throw new VT_UserNotFoundException();
         return userRepo.findByUsername(username);
     }
 
