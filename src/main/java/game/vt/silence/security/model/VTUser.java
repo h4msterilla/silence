@@ -32,10 +32,10 @@ public class VTUser {
     private String password;
 
     @OneToMany
-    private List<VTCharacter> vt_characterList = new ArrayList<>();
+    private List<VTCharacter> vtCharacterList = new ArrayList<>();
 
     public void addVT_Character(VTCharacter character){
-       vt_characterList.add(character);
+       vtCharacterList.add(character);
     }
 
 }
