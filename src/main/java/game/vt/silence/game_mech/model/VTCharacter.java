@@ -23,29 +23,6 @@ public class VTCharacter {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Transient
-    private static final String PHENOTYPE_CAPITALIST = "Столичник";
-    @Transient
-    private static final String PHENOTYPE_STEPPEDWELLER = "Степняк";
-    @Transient
-    private static final String PHENOTYPE_ADAPTDWELLER = "Степняк-адаптант";
-    @Transient
-    private static final String PHENOTYPE_HALF_BLOOD = "Полукровка";
-    @Transient
-    private static final String PHENOTYPE_ELDER = "Древний";
-    @Transient
-    private static final String PHENOTYPE_HIGHLANDER = "Горняк";
-    @Transient
-    private static final String PHENOTYPE_SLITHER = "Серпарь";
-    @Transient
-    private static final String PHENOTYPE_COLLECTOR = "Коллектор";
-    @Transient
-    private static final String PHENOTYPE_MENTALIST = "Ментал";
-    @Transient
-    private static final String PHENOTYPE_PIPER = "Трубач";
-    @Transient
-    private static final String PHENOTYPE_SOLID = "Солид";
-
     @ManyToOne
     private VTUser vt_user;
 
