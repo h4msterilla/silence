@@ -1,6 +1,7 @@
 package game.vt.silence.game_mech.model;
 
-import game.vt.silence.security.model.VT_User;
+import game.vt.silence.exceptions.WrongCharacterValueNameException;
+import game.vt.silence.security.model.VTUser;
 import lombok.*;
 import org.springframework.util.ReflectionUtils;
 
@@ -12,7 +13,8 @@ import java.lang.reflect.Field;
 @NoArgsConstructor
 @Getter
 @Setter
-public class VT_Character {
+@Table(name = "VT_Character")
+public class VTCharacter {
 
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
@@ -45,7 +47,7 @@ public class VT_Character {
     private static final String PHENOTYPE_SOLID = "Солид";
 
     @ManyToOne
-    private VT_User vt_user;
+    private VTUser vt_user;
 
     private String value_name = ""; //финальное
     private String value_self = ""; //меняемое
@@ -342,7 +344,7 @@ public class VT_Character {
     private void setValueByName(String valueName, int value) throws WrongCharacterValueNameException {
         if (valueName == null) throw new WrongCharacterValueNameException(null);
 
-        Field field = ReflectionUtils.findField(VT_Character.class, valueName);
+        Field field = ReflectionUtils.findField(VTCharacter.class, valueName);
         if (field == null) throw new WrongCharacterValueNameException(valueName);
         field.setAccessible(true);
         ReflectionUtils.setField(field, this, value);
@@ -351,7 +353,7 @@ public class VT_Character {
     private int getValueByName(String valueName) throws WrongCharacterValueNameException {
         if (valueName == null) throw new WrongCharacterValueNameException(null);
 
-        Field field = ReflectionUtils.findField(VT_Character.class, valueName);
+        Field field = ReflectionUtils.findField(VTCharacter.class, valueName);
         if (field == null) throw new WrongCharacterValueNameException(valueName);
         field.setAccessible(true);
         return (int) ReflectionUtils.getField(field, this);

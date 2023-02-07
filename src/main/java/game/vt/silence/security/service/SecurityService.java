@@ -1,9 +1,9 @@
 package game.vt.silence.security.service;
 
-import game.vt.silence.security.model.VT_User;
-import game.vt.silence.security.model.VT_UserNotFoundException;
-import game.vt.silence.security.model.VT_UserUsernameOccupiedException;
-import game.vt.silence.security.model.VT_UserWrongPasswordException;
+import game.vt.silence.security.model.VTUser;
+import game.vt.silence.exceptions.VTUserNotFoundException;
+import game.vt.silence.exceptions.VTUserUsernameOccupiedException;
+import game.vt.silence.exceptions.VTUserWrongPasswordException;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,11 +11,11 @@ public interface SecurityService {
 
     String findLoggedInUsername();
 
-    VT_User findLoggedInVT_User() throws VT_UserNotFoundException;
+    VTUser findLoggedInVT_User() throws VTUserNotFoundException;
 
-    void regUser(String username, String password) throws VT_UserUsernameOccupiedException;
+    void regUser(String username, String password) throws VTUserUsernameOccupiedException;
 
-    void autoLogin(String username, String password, HttpServletResponse response) throws VT_UserNotFoundException, VT_UserWrongPasswordException;
+    void autoLogin(String username, String password, HttpServletResponse response) throws VTUserNotFoundException, VTUserWrongPasswordException;
 
     void nonPassAutoLogin(String username, HttpServletResponse response);
 

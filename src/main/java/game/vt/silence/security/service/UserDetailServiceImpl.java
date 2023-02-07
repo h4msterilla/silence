@@ -1,7 +1,7 @@
 package game.vt.silence.security.service;
 
-import game.vt.silence.security.model.VT_User;
-import game.vt.silence.security.repo.VT_UserRepo;
+import game.vt.silence.security.model.VTUser;
+import game.vt.silence.security.repo.VTUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,12 +19,12 @@ import java.util.Set;
 public class UserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
-    VT_UserRepo userRepo;
+    VTUserRepo userRepo;
 
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        VT_User user = userRepo.findByUsername(username);
+        VTUser user = userRepo.findByUsername(username);
         if(user == null)
             throw new UsernameNotFoundException(username);
 

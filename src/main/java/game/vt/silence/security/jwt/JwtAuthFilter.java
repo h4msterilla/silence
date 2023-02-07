@@ -1,7 +1,7 @@
 package game.vt.silence.security.jwt;
 
 import game.vt.silence.security.service.SecurityService;
-import game.vt.silence.security.service.VT_UserService;
+import game.vt.silence.security.service.VTUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     JwtUtil jwtUtil;
 
     @Autowired
-    VT_UserService userService;
+    VTUserService userService;
     @Autowired
     SecurityService securityService;
 

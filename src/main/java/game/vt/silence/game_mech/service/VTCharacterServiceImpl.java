@@ -1,29 +1,29 @@
 package game.vt.silence.game_mech.service;
 
-import game.vt.silence.game_mech.model.CharacterNotFoundException;
-import game.vt.silence.game_mech.model.NameOccupiedException;
-import game.vt.silence.game_mech.model.VT_Character;
-import game.vt.silence.game_mech.model.WrongCharacterValueNameException;
-import game.vt.silence.game_mech.repo.VT_CharacterRepo;
-import game.vt.silence.security.model.VT_User;
-import game.vt.silence.security.service.VT_UserService;
+import game.vt.silence.exceptions.CharacterNotFoundException;
+import game.vt.silence.exceptions.NameOccupiedException;
+import game.vt.silence.game_mech.model.VTCharacter;
+import game.vt.silence.exceptions.WrongCharacterValueNameException;
+import game.vt.silence.game_mech.repo.VTCharacterRepo;
+import game.vt.silence.security.model.VTUser;
+import game.vt.silence.security.service.VTUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class VT_CharacterServiceImpl implements VT_CharacterService {
+public class VTCharacterServiceImpl implements VTCharacterService {
 
-    private static final Logger logger = LoggerFactory.getLogger(VT_CharacterServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(VTCharacterServiceImpl.class);
 
     @Autowired
-    VT_CharacterRepo repo;
+    VTCharacterRepo repo;
     @Autowired
-    VT_UserService userService;
+    VTUserService userService;
 
     @Override
-    public VT_Character getVT_CharacterByName(String value_name) throws CharacterNotFoundException {
+    public VTCharacter getVT_CharacterByName(String value_name) throws CharacterNotFoundException {
         if(!existsVT_CharacterByName(value_name)) throw new CharacterNotFoundException();
         return repo.findByValue_name(value_name);
     }
@@ -34,13 +34,13 @@ public class VT_CharacterServiceImpl implements VT_CharacterService {
     }
 
     @Override
-    public void saveCharacter(VT_Character character) {
+    public void saveCharacter(VTCharacter character) {
         repo.save(character);
     }
 
     @Override
     public void changeCharValueByName(String character, String valueName, String up_down) throws WrongCharacterValueNameException, CharacterNotFoundException {
-        VT_Character vt_Character = getVT_CharacterByName(character);
+        VTCharacter vt_Character = getVT_CharacterByName(character);
         vt_Character.changeValueByName(valueName, up_down);
         saveCharacter(vt_Character);
     }
@@ -49,14 +49,14 @@ public class VT_CharacterServiceImpl implements VT_CharacterService {
     public void createCharacter(String value_name) throws WrongCharacterValueNameException, NameOccupiedException {
         if (repo.existsByValue_name(value_name)) throw new NameOccupiedException();
 
-        VT_Character character = new VT_Character();
+        VTCharacter character = new VTCharacter();
         character.setValue_name(value_name);
         saveCharacter(character);
         logger.info("create new character - {}",character.getValue_name());
     }
 
     @Override
-    public void addVT_Character(VT_User user, VT_Character character) {
+    public void addVT_Character(VTUser user, VTCharacter character) {
         userService.addVT_Character(user,character);
         character.setVt_user(user);
         repo.save(character);

@@ -1,6 +1,6 @@
 package game.vt.silence.security.service;
 
-import game.vt.silence.game_mech.model.VT_Character;
+import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.security.model.VTUser;
 import game.vt.silence.exceptions.VTUserNotFoundException;
 import game.vt.silence.security.repo.VTUserRepo;
@@ -38,7 +38,7 @@ public class VTUserServiceImpl implements VTUserService {
     }
 
     @Override
-    public void addVT_Character(VTUser user, VT_Character character) {
+    public void addVT_Character(VTUser user, VTCharacter character) {
         user.addVT_Character(character);
         vt_userRepo.save(user);
     }

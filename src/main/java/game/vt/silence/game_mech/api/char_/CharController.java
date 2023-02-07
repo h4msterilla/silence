@@ -2,12 +2,12 @@ package game.vt.silence.game_mech.api.char_;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import game.vt.silence.game_mech.api.char_.json.*;
-import game.vt.silence.game_mech.model.CharacterNotFoundException;
-import game.vt.silence.game_mech.model.NameOccupiedException;
-import game.vt.silence.game_mech.model.VT_Character;
-import game.vt.silence.game_mech.model.WrongCharacterValueNameException;
-import game.vt.silence.game_mech.service.VT_CharacterService;
-import game.vt.silence.security.model.VT_User;
+import game.vt.silence.exceptions.CharacterNotFoundException;
+import game.vt.silence.exceptions.NameOccupiedException;
+import game.vt.silence.game_mech.model.VTCharacter;
+import game.vt.silence.exceptions.WrongCharacterValueNameException;
+import game.vt.silence.game_mech.service.VTCharacterService;
+import game.vt.silence.security.model.VTUser;
 import game.vt.silence.security.service.SecurityService;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class CharController {
 
     ObjectMapper jackson = new ObjectMapper();
     @Autowired
-    VT_CharacterService characterService;
+    VTCharacterService characterService;
     @Autowired
     SecurityService securityService;
 
@@ -37,8 +37,8 @@ public class CharController {
             return jackson.writeValueAsString(new Char_Create_RS("charnamealreadyused", "sometext"));
         }
 
-        VT_User vt_user = securityService.findLoggedInVT_User();
-        VT_Character vt_character = characterService.getVT_CharacterByName(request.getCharname());
+        VTUser vt_user = securityService.findLoggedInVT_User();
+        VTCharacter vt_character = characterService.getVT_CharacterByName(request.getCharname());
 
         characterService.addVT_Character(vt_user, vt_character);
 
@@ -51,7 +51,7 @@ public class CharController {
     @PostMapping("/char")
     public String charFind(@RequestBody String json) {
         Char_RQ request = jackson.readValue(json, Char_RQ.class);
-        VT_Character character = null;
+        VTCharacter character = null;
 
         try {
             character = characterService.getVT_CharacterByName(request.getCharname());
@@ -76,6 +76,17 @@ public class CharController {
         }
 
         return jackson.writeValueAsString(new Char_Edit_RS("edit success", "some text"));
+    }
+
+    @SneakyThrows
+    @PostMapping("/char/list")
+    public String charList(@RequestBody String json){
+        Char_Create_RQ request = jackson.readValue(json, Char_Create_RQ.class);
+
+
+
+
+        return "text";
     }
 
 

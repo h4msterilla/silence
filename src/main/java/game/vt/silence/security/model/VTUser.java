@@ -1,6 +1,6 @@
 package game.vt.silence.security.model;
 
-import game.vt.silence.game_mech.model.VT_Character;
+import game.vt.silence.game_mech.model.VTCharacter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,9 +32,9 @@ public class VTUser {
     private String password;
 
     @OneToMany
-    private List<VT_Character> vt_characterList = new ArrayList<>();
+    private List<VTCharacter> vt_characterList = new ArrayList<>();
 
-    public void addVT_Character(VT_Character character){
+    public void addVT_Character(VTCharacter character){
        vt_characterList.add(character);
     }
 
