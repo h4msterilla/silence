@@ -37,29 +37,29 @@ public class CharController {
             return jackson.writeValueAsString(new Char_Create_RS("charnamealreadyused", "sometext"));
         }
 
-        VTUser vt_user = securityService.findLoggedInVT_User();
-        VTCharacter vt_character = characterService.getVTCharacterByName(request.getCharname());
+        VTUser vtUser = securityService.findLoggedInVT_User();
+        VTCharacter vtCharacter = characterService.getVTCharacterByName(request.getCharname());
 
-        characterService.addVTCharacter(vt_user, vt_character);
+        characterService.addVTCharacter(vtUser, vtCharacter);
 
         return jackson.writeValueAsString(new Char_Create_RS("createsuccess",
-                "user: " + vt_user.getUsername()
-                        + " has create character: " + vt_character.getValue_name()));
+                "user: " + vtUser.getUsername()
+                        + " has create character: " + vtCharacter.getValue_name()));
     }
 
     @SneakyThrows
     @PostMapping("/char")
     public String charFind(@RequestBody String json) {
         Char_RQ request = jackson.readValue(json, Char_RQ.class);
-        VTCharacter character = null;
+        VTCharacter vtCharacter = null;
 
         try {
-            character = characterService.getVTCharacterByName(request.getCharname());
+            vtCharacter = characterService.getVTCharacterByName(request.getCharname());
         } catch (CharacterNotFoundException e) {
             return jackson.writeValueAsString(new Char_RS("wrong charname", "character not found"));
         }
 
-        return jackson.writeValueAsString(character);
+        return jackson.writeValueAsString(vtCharacter);
     }
 
     @SneakyThrows

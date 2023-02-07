@@ -12,7 +12,7 @@ public interface VTCharacterService {
 
     boolean existsVTCharacterByName(String value_name);
 
-    void saveVTCharacter(VTCharacter character);
+    void saveCharacter(VTCharacter character);
 
     void changeCharValueByName(String character, String valueName, String up_down) throws WrongCharacterValueNameException, CharacterNotFoundException;
 
