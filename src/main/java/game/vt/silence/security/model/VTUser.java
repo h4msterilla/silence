@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "VT_User")
+@Table(name = "VTUser")
 @Getter
 @Setter
 @AllArgsConstructor

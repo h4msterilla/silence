@@ -7,13 +7,14 @@ import org.springframework.util.ReflectionUtils;
 
 import javax.persistence.*;
 import java.lang.reflect.Field;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "VT_Character")
+@Table(name = "VTCharacter")
 public class VTCharacter {
 
     @Getter(AccessLevel.NONE)
@@ -28,7 +29,11 @@ public class VTCharacter {
 
     private String value_name = ""; //финальное
     private String value_self = ""; //меняемое
-    private String value_phenotype = ""; //финальное
+    private String value_phenotype = "";//финальное
+
+    @OneToMany
+    private List<VTCharacterValue> values;
+
     private int value_experience_max = 0; //меняемое
     private int value_experience_actual = 0;
     private int value_ticks = 0; //меняемое
