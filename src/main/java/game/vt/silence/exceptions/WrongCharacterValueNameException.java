@@ -1,9 +1,9 @@
-package game.vt.silence.game_mech.model;
+package game.vt.silence.exceptions;
 
 import lombok.Getter;
 
 @Getter
-public class WrongCharacterValueNameException extends Exception {
+public class WrongCharacterValueNameException extends RuntimeException {
     String wrongName;
 
     public WrongCharacterValueNameException(String wrongName) {
