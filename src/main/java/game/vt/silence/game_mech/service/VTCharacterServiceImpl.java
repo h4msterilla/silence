@@ -57,7 +57,7 @@ public class VTCharacterServiceImpl implements VTCharacterService {
 
     @Override
     public void addVTCharacter(VTUser user, VTCharacter character) {
-        userService.addVT_Character(user,character);
+        userService.addVTCharacter(user,character);
         character.setVt_user(user);
         repo.save(character);
         logger.info("add character {} to user {}",character.getValue_name(),user.getUsername());

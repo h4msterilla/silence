@@ -38,13 +38,13 @@ public class VTUserServiceImpl implements VTUserService {
     }
 
     @Override
-    public void addVT_Character(VTUser user, VTCharacter character) {
+    public void addVTCharacter(VTUser user, VTCharacter character) {
         user.addVT_Character(character);
         vt_userRepo.save(user);
     }
 
     @Override
-    public List<String> getVT_CharactersByUsername(String username) {
+    public List<String> getVTCharactersByUsername(String username) {
 
 
 

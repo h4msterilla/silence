@@ -14,8 +14,8 @@ public interface VTUserService {
 
     VTUser findByUsername(String username) throws VTUserNotFoundException;
 
-    void addVT_Character(VTUser user, VTCharacter character);
+    void addVTCharacter(VTUser user, VTCharacter character);
 
-    List<String> getVT_CharactersByUsername(String username);
+    List<String> getVTCharactersByUsername(String username);
 
 }
