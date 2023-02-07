@@ -34,7 +34,7 @@ public class VTCharacterServiceImpl implements VTCharacterService {
     }
 
     @Override
-    public void saveCharacter(VTCharacter character) {
+    public void saveVTCharacter(VTCharacter character) {
         repo.save(character);
     }
 
@@ -42,16 +42,16 @@ public class VTCharacterServiceImpl implements VTCharacterService {
     public void changeCharValueByName(String character, String valueName, String up_down) throws WrongCharacterValueNameException, CharacterNotFoundException {
         VTCharacter vt_Character = getVTCharacterByName(character);
         vt_Character.changeValueByName(valueName, up_down);
-        saveCharacter(vt_Character);
+        saveVTCharacter(vt_Character);
     }
 
     @Override
-    public void createCharacter(String value_name) throws WrongCharacterValueNameException, NameOccupiedException {
+    public void createVTCharacter(String value_name) throws WrongCharacterValueNameException, NameOccupiedException {
         if (repo.existsByValue_name(value_name)) throw new NameOccupiedException();
 
         VTCharacter character = new VTCharacter();
         character.setValue_name(value_name);
-        saveCharacter(character);
+        saveVTCharacter(character);
         logger.info("create new character - {}",character.getValue_name());
     }
 

@@ -30,7 +30,7 @@ public class CharController {
         Char_Create_RQ request = jackson.readValue(json, Char_Create_RQ.class);
 
         try {
-            characterService.createCharacter(request.getCharname());
+            characterService.createVTCharacter(request.getCharname());
         } catch (WrongCharacterValueNameException e) {
             return jackson.writeValueAsString(new Char_Create_RS("wrong charname", e.getWrongName()));
         } catch (NameOccupiedException e) {
