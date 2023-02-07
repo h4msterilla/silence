@@ -14,7 +14,7 @@ import java.util.List;
 public class VTUserServiceImpl implements VTUserService {
 
     @Autowired()
-    VTUserRepo vt_userRepo;
+    VTUserRepo vtUserRepo;
 
     @Autowired
     BCryptPasswordEncoder encoder;
@@ -23,24 +23,24 @@ public class VTUserServiceImpl implements VTUserService {
     public void save(VTUser user) {
         if (user.getPassword() != null)
             user.setEncodedPassword(encoder.encode(user.getPassword()));
-        vt_userRepo.save(user);
+        vtUserRepo.save(user);
     }
 
     @Override
     public boolean existsByUsername(String username) {
-        return vt_userRepo.existsByUsername(username);
+        return vtUserRepo.existsByUsername(username);
     }
 
     @Override
     public VTUser findByUsername(String username) throws VTUserNotFoundException {
-        if (!vt_userRepo.existsByUsername(username)) throw new VTUserNotFoundException();
-        return vt_userRepo.findByUsername(username);
+        if (!vtUserRepo.existsByUsername(username)) throw new VTUserNotFoundException();
+        return vtUserRepo.findByUsername(username);
     }
 
     @Override
     public void addVTCharacter(VTUser user, VTCharacter character) {
         user.addVT_Character(character);
-        vt_userRepo.save(user);
+        vtUserRepo.save(user);
     }
 
     @Override
