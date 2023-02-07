@@ -38,9 +38,9 @@ public class CharController {
         }
 
         VTUser vt_user = securityService.findLoggedInVT_User();
-        VTCharacter vt_character = characterService.getVT_CharacterByName(request.getCharname());
+        VTCharacter vt_character = characterService.getVTCharacterByName(request.getCharname());
 
-        characterService.addVT_Character(vt_user, vt_character);
+        characterService.addVTCharacter(vt_user, vt_character);
 
         return jackson.writeValueAsString(new Char_Create_RS("createsuccess",
                 "user: " + vt_user.getUsername()
@@ -54,7 +54,7 @@ public class CharController {
         VTCharacter character = null;
 
         try {
-            character = characterService.getVT_CharacterByName(request.getCharname());
+            character = characterService.getVTCharacterByName(request.getCharname());
         } catch (CharacterNotFoundException e) {
             return jackson.writeValueAsString(new Char_RS("wrong charname", "character not found"));
         }

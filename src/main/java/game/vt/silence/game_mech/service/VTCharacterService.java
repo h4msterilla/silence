@@ -8,9 +8,9 @@ import game.vt.silence.security.model.VTUser;
 
 public interface VTCharacterService {
 
-    VTCharacter getVT_CharacterByName(String value_name) throws CharacterNotFoundException;
+    VTCharacter getVTCharacterByName(String value_name) throws CharacterNotFoundException;
 
-    boolean existsVT_CharacterByName(String value_name);
+    boolean existsVTCharacterByName(String value_name);
 
     void saveCharacter(VTCharacter character);
 
@@ -18,6 +18,6 @@ public interface VTCharacterService {
 
     void createCharacter(String value_name) throws WrongCharacterValueNameException, NameOccupiedException;
 
-    void addVT_Character(VTUser user, VTCharacter character);
+    void addVTCharacter(VTUser user, VTCharacter character);
 
 }
