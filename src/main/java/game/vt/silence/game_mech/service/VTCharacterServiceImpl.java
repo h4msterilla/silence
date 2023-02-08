@@ -25,12 +25,12 @@ public class VTCharacterServiceImpl implements VTCharacterService {
     @Override
     public VTCharacter getVTCharacterByName(String value_name) throws CharacterNotFoundException {
         if(!existsVTCharacterByName(value_name)) throw new CharacterNotFoundException();
-        return repo.findByValue_name(value_name);
+        return repo.findByCharname(value_name);
     }
 
     @Override
     public boolean existsVTCharacterByName(String value_name) {
-        return repo.existsByValue_name(value_name);
+        return repo.existsByCharname(value_name);
     }
 
     @Override
@@ -40,27 +40,27 @@ public class VTCharacterServiceImpl implements VTCharacterService {
 
     @Override
     public void changeCharValueByName(String character, String valueName, String up_down) throws WrongCharacterValueNameException, CharacterNotFoundException {
-        VTCharacter vt_Character = getVTCharacterByName(character);
-        vt_Character.changeValueByName(valueName, up_down);
-        saveVTCharacter(vt_Character);
+        //VTCharacter vt_Character = getVTCharacterByName(character);
+        //vt_Character.changeValueByName(valueName, up_down);//-------------------------------------------------!
+        //saveVTCharacter(vt_Character);
     }
 
     @Override
     public void createVTCharacter(String value_name) throws WrongCharacterValueNameException, NameOccupiedException {
-        if (repo.existsByValue_name(value_name)) throw new NameOccupiedException();
+        if (repo.existsByCharname(value_name)) throw new NameOccupiedException();
 
         VTCharacter character = new VTCharacter();
-        character.setValue_name(value_name);
+        character.setCharname(value_name);
         saveVTCharacter(character);
-        logger.info("create new character - {}",character.getValue_name());
+        logger.info("create new character - {}",character.getCharname());
     }
 
     @Override
     public void addVTCharacter(VTUser user, VTCharacter character) {
         userService.addVTCharacter(user,character);
-        character.setVt_user(user);
+        character.setVtUser(user);
         repo.save(character);
-        logger.info("add character {} to user {}",character.getValue_name(),user.getUsername());
+        logger.info("add character {} to user {}",character.getCharname(),user.getUsername());
     }
 
 }

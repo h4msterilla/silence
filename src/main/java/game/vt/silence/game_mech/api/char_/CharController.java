@@ -1,11 +1,11 @@
 package game.vt.silence.game_mech.api.char_;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import game.vt.silence.game_mech.api.char_.json.*;
 import game.vt.silence.exceptions.CharacterNotFoundException;
 import game.vt.silence.exceptions.NameOccupiedException;
-import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.exceptions.WrongCharacterValueNameException;
+import game.vt.silence.game_mech.api.char_.json.*;
+import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.service.VTCharacterService;
 import game.vt.silence.security.model.VTUser;
 import game.vt.silence.security.service.SecurityService;
@@ -44,7 +44,7 @@ public class CharController {
 
         return jackson.writeValueAsString(new Char_Create_RS("createsuccess",
                 "user: " + vtUser.getUsername()
-                        + " has create character: " + vtCharacter.getValue_name()));
+                        + " has create character: " + vtCharacter.getCharname()));
     }
 
     @SneakyThrows
