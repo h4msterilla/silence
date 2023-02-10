@@ -19,7 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class VTCharacterController {
 
-    ObjectMapper jackson = new ObjectMapper();
+    @Autowired
+    ObjectMapper jackson;
     @Autowired
     VTCharacterService characterService;
     @Autowired
@@ -27,15 +28,13 @@ public class VTCharacterController {
 
     @SneakyThrows
     @PostMapping("/char/create")
-    public String charCreate(@RequestBody String json) {
-        Char_Create_RQ request = jackson.readValue(json, Char_Create_RQ.class);
-
+    public Char_Create_RS charCreate(@RequestBody Char_Create_RQ request) {
         try {
             characterService.createVTCharacter(request.getCharname());
         } catch (VTCharacterValueNotFoundException e) {
-            return jackson.writeValueAsString(new Char_Create_RS("wrong charname", e.getWrongName()));
+            return new Char_Create_RS("wrong charname", e.getWrongName());
         } catch (VTCharacterNameOccupiedException e) {
-            return jackson.writeValueAsString(new Char_Create_RS("charnamealreadyused", "sometext"));
+            return new Char_Create_RS("charnamealreadyused", "sometext");
         }
 
         VTUser vtUser = securityService.findLoggedInVT_User();
@@ -43,15 +42,14 @@ public class VTCharacterController {
 
         characterService.addVTCharacter(vtUser, vtCharacter);
 
-        return jackson.writeValueAsString(new Char_Create_RS("createsuccess",
+        return new Char_Create_RS("createsuccess",
                 "user: " + vtUser.getUsername()
-                        + " has create character: " + vtCharacter.getCharname()));
+                        + " has create character: " + vtCharacter.getCharname());
     }
 
     @SneakyThrows
     @PostMapping("/char")
-    public String charFind(@RequestBody String json) {
-        Char_RQ request = jackson.readValue(json, Char_RQ.class);
+    public String charFind(@RequestBody Char_RQ request) {
         VTCharacter vtCharacter = null;
 
         try {
@@ -64,14 +62,9 @@ public class VTCharacterController {
     }
 
 
-
     @SneakyThrows
     @PostMapping("/char/list")
-    public String charList(@RequestBody String json){
-        Char_Create_RQ request = jackson.readValue(json, Char_Create_RQ.class);
-
-
-
+    public String charList(@RequestBody Char_Create_RQ request) {
 
         return "text";
     }
