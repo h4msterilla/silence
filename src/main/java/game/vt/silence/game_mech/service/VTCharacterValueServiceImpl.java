@@ -1,6 +1,6 @@
 package game.vt.silence.game_mech.service;
 
-import game.vt.silence.exceptions.VTCharacterValueWrongNameException;
+import game.vt.silence.exceptions.VTCharacterValueNotFoundException;
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.model.VTCharacterValue;
 import game.vt.silence.game_mech.repo.VTCharacterValueRepo;
@@ -36,7 +36,7 @@ public class VTCharacterValueServiceImpl implements VTCharacterValueService {
                 .filter(v -> v.getName().equalsIgnoreCase(vtCharacterValue))
                 .findFirst();
 
-        if (value.isEmpty()) throw new VTCharacterValueWrongNameException(vtCharacterValue);
+        if (value.isEmpty()) throw new VTCharacterValueNotFoundException(vtCharacterValue);
 
         vtCharacterValueValidator.validate(vtCharacter, value.get(), upDown);
 
