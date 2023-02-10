@@ -24,8 +24,6 @@ public class VTCharacterController {
     VTCharacterService characterService;
     @Autowired
     SecurityService securityService;
-    @Autowired
-    VTCharacterValueService vtCharacterValueService;
 
     @SneakyThrows
     @PostMapping("/char/create")
@@ -65,22 +63,7 @@ public class VTCharacterController {
         return jackson.writeValueAsString(vtCharacter);
     }
 
-    @SneakyThrows
-    @PostMapping("/char/edit")
-    public String charEdit(@RequestBody String json) {
-        Char_Edit_RQ request = jackson.readValue(json, Char_Edit_RQ.class);
 
-        try {
-            vtCharacterValueService.edit(request.getCharname(),request.getSkillname(),request.getValue());
-            //characterService.changeCharValueByName(request.getCharname(), request.getSkillname(), request.getValue());
-        } catch (VTCharacterValueNotFoundException e) {
-            return jackson.writeValueAsString(new Char_Edit_RS("wrongedit", e.getWrongName()));
-        } catch (VTCharacterNotFoundException e) {
-            return jackson.writeValueAsString(new Char_Edit_RS("wrong charname", "characher not found"));
-        }
-
-        return jackson.writeValueAsString(new Char_Edit_RS("edit success", "some text"));
-    }
 
     @SneakyThrows
     @PostMapping("/char/list")
