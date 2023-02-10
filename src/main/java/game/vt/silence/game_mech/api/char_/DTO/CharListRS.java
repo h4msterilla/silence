@@ -1,15 +1,15 @@
-package game.vt.silence.game_mech.api.char_.json;
+package game.vt.silence.game_mech.api.char_.DTO;
 
 import lombok.Getter;
 
 import java.util.List;
 
 @Getter
-public class Char_List_RS {
+public class CharListRS {
 
     Status status = new Status();
 
-    public Char_List_RS(String type, String message, List<String> charnames){
+    public CharListRS(String type, String message, List<String> charnames){
         status.type = type;
         status.message = message;
         this.charnames = charnames;

@@ -4,10 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import game.vt.silence.exceptions.VTCharacterNotFoundException;
 import game.vt.silence.exceptions.VTCharacterNameOccupiedException;
 import game.vt.silence.exceptions.VTCharacterValueNotFoundException;
-import game.vt.silence.game_mech.api.char_.json.*;
+import game.vt.silence.game_mech.api.char_.DTO.*;
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.service.VTCharacterService;
-import game.vt.silence.game_mech.service.VTCharacterValueService;
 import game.vt.silence.security.model.VTUser;
 import game.vt.silence.security.service.SecurityService;
 import lombok.SneakyThrows;
@@ -28,13 +27,13 @@ public class VTCharacterController {
 
     @SneakyThrows
     @PostMapping("/char/create")
-    public Char_Create_RS charCreate(@RequestBody Char_Create_RQ request) {
+    public CharCreateRS charCreate(@RequestBody CharCreateRQ request) {
         try {
             characterService.createVTCharacter(request.getCharname());
         } catch (VTCharacterValueNotFoundException e) {
-            return new Char_Create_RS("wrong charname", e.getWrongName());
+            return new CharCreateRS("wrong charname", e.getWrongName());
         } catch (VTCharacterNameOccupiedException e) {
-            return new Char_Create_RS("charnamealreadyused", "sometext");
+            return new CharCreateRS("charnamealreadyused", "sometext");
         }
 
         VTUser vtUser = securityService.findLoggedInVT_User();
@@ -42,20 +41,20 @@ public class VTCharacterController {
 
         characterService.addVTCharacter(vtUser, vtCharacter);
 
-        return new Char_Create_RS("createsuccess",
+        return new CharCreateRS("createsuccess",
                 "user: " + vtUser.getUsername()
                         + " has create character: " + vtCharacter.getCharname());
     }
 
     @SneakyThrows
     @PostMapping("/char")
-    public String charFind(@RequestBody Char_RQ request) {
+    public String charFind(@RequestBody CharRQ request) {
         VTCharacter vtCharacter = null;
 
         try {
             vtCharacter = characterService.getVTCharacterByName(request.getCharname());
         } catch (VTCharacterNotFoundException e) {
-            return jackson.writeValueAsString(new Char_RS("wrong charname", "character not found"));
+            return jackson.writeValueAsString(new CharRS("wrong charname", "character not found"));
         }
 
         return jackson.writeValueAsString(vtCharacter);
@@ -64,7 +63,7 @@ public class VTCharacterController {
 
     @SneakyThrows
     @PostMapping("/char/list")
-    public String charList(@RequestBody Char_Create_RQ request) {
+    public String charList(@RequestBody CharCreateRQ request) {
 
         return "text";
     }

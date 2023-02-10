@@ -1,9 +1,9 @@
-package game.vt.silence.game_mech.api.char_.json;
+package game.vt.silence.game_mech.api.char_.DTO;
 
 import lombok.Getter;
 
 @Getter
-public class Char_Edit_RQ {
+public class CharEditRQ {
     String charname;
     String skillname;
     String value;

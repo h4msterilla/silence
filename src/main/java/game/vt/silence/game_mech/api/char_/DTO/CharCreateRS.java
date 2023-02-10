@@ -1,13 +1,13 @@
-package game.vt.silence.game_mech.api.char_.json;
+package game.vt.silence.game_mech.api.char_.DTO;
 
 import lombok.Getter;
 
 @Getter
-public class Char_Create_RS {
+public class CharCreateRS {
 
     Status status = new Status();
 
-    public Char_Create_RS(String type, String message) {
+    public CharCreateRS(String type, String message) {
         status.type = type;
         status.message = message;
     }
