@@ -3,7 +3,7 @@ package game.vt.silence.security.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import game.vt.silence.security.api.json.Reg_RQ;
 import game.vt.silence.security.api.json.Reg_RS;
-import game.vt.silence.exceptions.VTUserUsernameOccupiedException;
+import game.vt.silence.exceptions.VTUserNameOccupiedException;
 import game.vt.silence.security.service.SecurityService;
 import game.vt.silence.security.validation.PasswordValidator;
 import game.vt.silence.security.validation.UsernameValidator;
@@ -43,7 +43,7 @@ public class RegController {
 
         try {
             securityService.regUser(request.getUsername(),request.getPassword());
-        } catch (VTUserUsernameOccupiedException e) {
+        } catch (VTUserNameOccupiedException e) {
             return jackson.writeValueAsString(new Reg_RS("username already used","some text"));
         }
 

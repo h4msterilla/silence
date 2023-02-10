@@ -3,7 +3,7 @@ package game.vt.silence.security.service;
 import game.vt.silence.security.jwt.JwtUtil;
 import game.vt.silence.security.model.VTUser;
 import game.vt.silence.exceptions.VTUserNotFoundException;
-import game.vt.silence.exceptions.VTUserUsernameOccupiedException;
+import game.vt.silence.exceptions.VTUserNameOccupiedException;
 import game.vt.silence.exceptions.VTUserWrongPasswordException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,9 +58,9 @@ public class SecurityServiceImpl implements SecurityService {
     }
 
     @Override
-    public void regUser(String username, String password) throws VTUserUsernameOccupiedException {
+    public void regUser(String username, String password) throws VTUserNameOccupiedException {
 
-        if (userService.existsByUsername(username)) throw new VTUserUsernameOccupiedException();
+        if (userService.existsByUsername(username)) throw new VTUserNameOccupiedException();
 
         VTUser vt_user = new VTUser();
         vt_user.setUsername(username);
