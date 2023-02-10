@@ -14,7 +14,7 @@ public interface VTCharacterService {
 
     void saveVTCharacter(VTCharacter character);
 
-    void changeCharValueByName(String character, String valueName, String up_down) throws WrongCharacterValueNameException, CharacterNotFoundException;
+    //void changeCharValueByName(String character, String valueName, String up_down) throws WrongCharacterValueNameException, CharacterNotFoundException;
 
     void createVTCharacter(String value_name) throws WrongCharacterValueNameException, NameOccupiedException;
 

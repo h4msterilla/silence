@@ -38,12 +38,12 @@ public class VTCharacterServiceImpl implements VTCharacterService {
         repo.save(character);
     }
 
-    @Override
+    /*@Override
     public void changeCharValueByName(String character, String valueName, String up_down) throws WrongCharacterValueNameException, CharacterNotFoundException {
         //VTCharacter vt_Character = getVTCharacterByName(character);
         //vt_Character.changeValueByName(valueName, up_down);//-------------------------------------------------!
         //saveVTCharacter(vt_Character);
-    }
+    }*/
 
     @Override
     public void createVTCharacter(String value_name) throws WrongCharacterValueNameException, NameOccupiedException {

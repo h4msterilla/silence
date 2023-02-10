@@ -7,6 +7,7 @@ import game.vt.silence.exceptions.WrongCharacterValueNameException;
 import game.vt.silence.game_mech.api.char_.json.*;
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.service.VTCharacterService;
+import game.vt.silence.game_mech.service.VTCharacterValueService;
 import game.vt.silence.security.model.VTUser;
 import game.vt.silence.security.service.SecurityService;
 import lombok.SneakyThrows;
@@ -23,6 +24,8 @@ public class CharController {
     VTCharacterService characterService;
     @Autowired
     SecurityService securityService;
+    @Autowired
+    VTCharacterValueService vtCharacterValueService;
 
     @SneakyThrows
     @PostMapping("/char/create")
@@ -68,7 +71,8 @@ public class CharController {
         Char_Edit_RQ request = jackson.readValue(json, Char_Edit_RQ.class);
 
         try {
-            characterService.changeCharValueByName(request.getCharname(), request.getSkillname(), request.getValue());
+            vtCharacterValueService.edit(request.getCharname(),request.getSkillname(),request.getValue());
+            //characterService.changeCharValueByName(request.getCharname(), request.getSkillname(), request.getValue());
         } catch (WrongCharacterValueNameException e) {
             return jackson.writeValueAsString(new Char_Edit_RS("wrongedit", e.getWrongName()));
         } catch (CharacterNotFoundException e) {
