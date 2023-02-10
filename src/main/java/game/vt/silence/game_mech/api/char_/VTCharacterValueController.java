@@ -18,25 +18,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class VTCharacterValueController {
 
     @Autowired
-    ObjectMapper jackson;
-    @Autowired
     VTCharacterValueService vtCharacterValueService;
 
     @SneakyThrows
     @PostMapping("/char/edit")
-    public String charEdit(@RequestBody String json) {
-        Char_Edit_RQ request = jackson.readValue(json, Char_Edit_RQ.class);
+    public Char_Edit_RS charEdit(@RequestBody Char_Edit_RQ request ) {
 
         try {
             vtCharacterValueService.edit(request.getCharname(),request.getSkillname(),request.getValue());
-            //characterService.changeCharValueByName(request.getCharname(), request.getSkillname(), request.getValue());
         } catch (VTCharacterValueNotFoundException e) {
-            return jackson.writeValueAsString(new Char_Edit_RS("wrongedit", e.getWrongName()));
+            return new Char_Edit_RS("wrongedit", e.getMessage());
         } catch (VTCharacterNotFoundException e) {
-            return jackson.writeValueAsString(new Char_Edit_RS("wrong charname", "characher not found"));
+            return new Char_Edit_RS("wrong charname", e.getMessage());
         }
 
-        return jackson.writeValueAsString(new Char_Edit_RS("edit success", "some text"));
+        return new Char_Edit_RS("edit success", "some text");
     }
 
 
