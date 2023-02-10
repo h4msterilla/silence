@@ -1,7 +1,6 @@
 package game.vt.silence.game_mech.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import game.vt.silence.exceptions.WrongCharacterValueNameException;
 import game.vt.silence.security.model.VTUser;
 import lombok.*;
 

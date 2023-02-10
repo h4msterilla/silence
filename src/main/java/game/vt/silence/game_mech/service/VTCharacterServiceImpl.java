@@ -3,7 +3,7 @@ package game.vt.silence.game_mech.service;
 import game.vt.silence.exceptions.CharacterNotFoundException;
 import game.vt.silence.exceptions.NameOccupiedException;
 import game.vt.silence.game_mech.model.VTCharacter;
-import game.vt.silence.exceptions.WrongCharacterValueNameException;
+import game.vt.silence.exceptions.VTCharacterValueWrongNameException;
 import game.vt.silence.game_mech.repo.VTCharacterRepo;
 import game.vt.silence.security.model.VTUser;
 import game.vt.silence.security.service.VTUserService;
@@ -46,7 +46,7 @@ public class VTCharacterServiceImpl implements VTCharacterService {
     }*/
 
     @Override
-    public void createVTCharacter(String value_name) throws WrongCharacterValueNameException, NameOccupiedException {
+    public void createVTCharacter(String value_name) throws VTCharacterValueWrongNameException, NameOccupiedException {
         if (repo.existsByCharname(value_name)) throw new NameOccupiedException();
 
         VTCharacter character = new VTCharacter();
