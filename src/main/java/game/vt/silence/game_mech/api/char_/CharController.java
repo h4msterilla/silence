@@ -2,7 +2,7 @@ package game.vt.silence.game_mech.api.char_;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import game.vt.silence.exceptions.VTCharacterNotFoundException;
-import game.vt.silence.exceptions.NameOccupiedException;
+import game.vt.silence.exceptions.VTCharacterNameOccupiedException;
 import game.vt.silence.exceptions.VTCharacterValueWrongNameException;
 import game.vt.silence.game_mech.api.char_.json.*;
 import game.vt.silence.game_mech.model.VTCharacter;
@@ -36,7 +36,7 @@ public class CharController {
             characterService.createVTCharacter(request.getCharname());
         } catch (VTCharacterValueWrongNameException e) {
             return jackson.writeValueAsString(new Char_Create_RS("wrong charname", e.getWrongName()));
-        } catch (NameOccupiedException e) {
+        } catch (VTCharacterNameOccupiedException e) {
             return jackson.writeValueAsString(new Char_Create_RS("charnamealreadyused", "sometext"));
         }
 
