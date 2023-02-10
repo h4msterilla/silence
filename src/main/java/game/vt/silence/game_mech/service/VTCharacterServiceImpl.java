@@ -1,6 +1,6 @@
 package game.vt.silence.game_mech.service;
 
-import game.vt.silence.exceptions.CharacterNotFoundException;
+import game.vt.silence.exceptions.VTCharacterNotFoundException;
 import game.vt.silence.exceptions.NameOccupiedException;
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.exceptions.VTCharacterValueWrongNameException;
@@ -23,8 +23,8 @@ public class VTCharacterServiceImpl implements VTCharacterService {
     VTUserService userService;
 
     @Override
-    public VTCharacter getVTCharacterByName(String value_name) throws CharacterNotFoundException {
-        if(!existsVTCharacterByName(value_name)) throw new CharacterNotFoundException();
+    public VTCharacter getVTCharacterByName(String value_name) throws VTCharacterNotFoundException {
+        if(!existsVTCharacterByName(value_name)) throw new VTCharacterNotFoundException();
         return repo.findByCharname(value_name);
     }
 

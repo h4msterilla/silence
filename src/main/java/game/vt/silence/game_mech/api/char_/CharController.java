@@ -1,7 +1,7 @@
 package game.vt.silence.game_mech.api.char_;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import game.vt.silence.exceptions.CharacterNotFoundException;
+import game.vt.silence.exceptions.VTCharacterNotFoundException;
 import game.vt.silence.exceptions.NameOccupiedException;
 import game.vt.silence.exceptions.VTCharacterValueWrongNameException;
 import game.vt.silence.game_mech.api.char_.json.*;
@@ -58,7 +58,7 @@ public class CharController {
 
         try {
             vtCharacter = characterService.getVTCharacterByName(request.getCharname());
-        } catch (CharacterNotFoundException e) {
+        } catch (VTCharacterNotFoundException e) {
             return jackson.writeValueAsString(new Char_RS("wrong charname", "character not found"));
         }
 
@@ -75,7 +75,7 @@ public class CharController {
             //characterService.changeCharValueByName(request.getCharname(), request.getSkillname(), request.getValue());
         } catch (VTCharacterValueWrongNameException e) {
             return jackson.writeValueAsString(new Char_Edit_RS("wrongedit", e.getWrongName()));
-        } catch (CharacterNotFoundException e) {
+        } catch (VTCharacterNotFoundException e) {
             return jackson.writeValueAsString(new Char_Edit_RS("wrong charname", "characher not found"));
         }
 
