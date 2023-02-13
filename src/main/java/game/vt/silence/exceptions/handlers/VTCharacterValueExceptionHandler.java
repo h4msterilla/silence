@@ -1,4 +1,4 @@
-package game.vt.silence.game_mech.api.char_;
+package game.vt.silence.exceptions.handlers;
 
 import game.vt.silence.exceptions.VTCharacterValueNotFoundException;
 import game.vt.silence.game_mech.api.char_.DTO.CharEditRS;
