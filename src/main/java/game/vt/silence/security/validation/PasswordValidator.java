@@ -1,13 +1,13 @@
 package game.vt.silence.security.validation;
 
-import javax.xml.bind.ValidationException;
+import game.vt.silence.exceptions.VTValidationException;
 
 public class PasswordValidator {
 
-    public static void validate(String password) throws ValidationException {
+    public static void validate(String password) {
 
-        if(password.length() < 8) throw new ValidationException("contains less then 8 symbols");
-        if(password.length() > 50) throw new ValidationException("contains more then 50 symbols");
+        if (password.length() < 8) throw new VTValidationException("password contains less then 8 symbols");
+        if (password.length() > 50) throw new VTValidationException("password contains more then 50 symbols");
 
     }
 
