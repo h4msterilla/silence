@@ -1,7 +1,5 @@
 package game.vt.silence.game_mech.api.char_;
 
-import game.vt.silence.exceptions.VTCharacterNotFoundException;
-import game.vt.silence.exceptions.VTCharacterValueNotFoundException;
 import game.vt.silence.game_mech.api.char_.DTO.CharEditRQ;
 import game.vt.silence.game_mech.api.char_.DTO.CharEditRS;
 import game.vt.silence.game_mech.service.VTCharacterValueService;
@@ -17,18 +15,9 @@ public class VTCharacterValueController {
     @Autowired
     VTCharacterValueService vtCharacterValueService;
 
-    @SneakyThrows
     @PostMapping("/char/edit")
-    public CharEditRS charEdit(@RequestBody CharEditRQ request ) {
-
-        try {
-            vtCharacterValueService.edit(request.getCharname(),request.getSkillname(),request.getValue());
-        } catch (VTCharacterValueNotFoundException e) {
-            return new CharEditRS("wrongedit", e.getMessage());
-        } catch (VTCharacterNotFoundException e) {
-            return new CharEditRS("wrong charname", e.getMessage());
-        }
-
+    public CharEditRS charEdit(@RequestBody CharEditRQ request) {
+        vtCharacterValueService.edit(request.getCharname(), request.getSkillname(), request.getValue());
         return new CharEditRS("edit success", "some text");
     }
 
