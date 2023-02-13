@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 
 @Component
-public class VTCharacterFilterProcessor {
+public class VTCharacterValueFilterProcessor {
 
     @Autowired
     List<VTCharacterValueFilter> filters;
