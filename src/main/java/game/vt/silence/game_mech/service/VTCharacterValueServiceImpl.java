@@ -36,7 +36,7 @@ public class VTCharacterValueServiceImpl implements VTCharacterValueService {
                 .filter(v -> v.getName().equalsIgnoreCase(vtCharacterValue))
                 .findFirst();
 
-        if (value.isEmpty()) throw new VTCharacterValueNotFoundException(vtCharacterValue);
+        if (value.isEmpty()) throw new VTCharacterValueNotFoundException();
 
         vtCharacterValueValidator.validate(vtCharacter, value.get(), upDown);
 

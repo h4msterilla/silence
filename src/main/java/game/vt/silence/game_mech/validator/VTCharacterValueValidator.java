@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class VTCharacterValueValidator {
 
     public void validate(VTCharacter vtCharacter, VTCharacterValue vtCharacterValue, String upDown){
-        if(false) throw new VTCharacterValueNotFoundException("some math text");
+        if(false) throw new RuntimeException();
     }
 
 }
