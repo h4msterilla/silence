@@ -1,7 +1,6 @@
 package game.vt.silence.exceptions.handlers;
 
-import game.vt.silence.exceptions.VTCharacterValueNotFoundException;
-import game.vt.silence.game_mech.api.char_.DTO.CharEditRS;
+import game.vt.silence.exceptions.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,13 +10,22 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class VTCharacterValueExceptionHandler extends ResponseEntityExceptionHandler {
+public class VTExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = VTCharacterValueNotFoundException.class)
-    protected ResponseEntity<Object> handleVTCharacterValueNotFoundException(RuntimeException e, WebRequest webRequest){
+    @ExceptionHandler(value = {
+            VTUserNameOccupiedException.class,
+            VTUserNotFoundException.class,
+            VTUserWrongPasswordException.class,
+
+            VTCharacterNameOccupiedException.class,
+            VTCharacterNotFoundException.class,
+
+            VTCharacterValueNotFoundException.class
+    })
+    protected ResponseEntity<Object> handleVTUserExceptions(RuntimeException e, WebRequest webRequest){
         return handleExceptionInternal(
                 e,
-                new CharEditRS("",""),
+                new StatusRS(e),
                 new HttpHeaders(),
                 HttpStatus.CONFLICT,
                 webRequest
