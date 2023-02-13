@@ -1,8 +1,8 @@
 package game.vt.silence.security.service;
 
+import game.vt.silence.exceptions.VTUserNotFoundException;
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.security.model.VTUser;
-import game.vt.silence.exceptions.VTUserNotFoundException;
 import game.vt.silence.security.repo.VTUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -32,7 +32,7 @@ public class VTUserServiceImpl implements VTUserService {
     }
 
     @Override
-    public VTUser findByUsername(String username) throws VTUserNotFoundException {
+    public VTUser findByUsername(String username) {
         if (!vtUserRepo.existsByUsername(username)) throw new VTUserNotFoundException();
         return vtUserRepo.findByUsername(username);
     }
@@ -45,7 +45,6 @@ public class VTUserServiceImpl implements VTUserService {
 
     @Override
     public List<String> getVTCharactersByUsername(String username) {
-
 
 
         return null;

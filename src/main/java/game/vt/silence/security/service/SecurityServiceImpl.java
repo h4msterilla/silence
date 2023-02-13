@@ -1,10 +1,10 @@
 package game.vt.silence.security.service;
 
+import game.vt.silence.exceptions.VTUserNameOccupiedException;
+import game.vt.silence.exceptions.VTUserNotFoundException;
+import game.vt.silence.exceptions.VTUserWrongPasswordException;
 import game.vt.silence.security.jwt.JwtUtil;
 import game.vt.silence.security.model.VTUser;
-import game.vt.silence.exceptions.VTUserNotFoundException;
-import game.vt.silence.exceptions.VTUserNameOccupiedException;
-import game.vt.silence.exceptions.VTUserWrongPasswordException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,18 +47,18 @@ public class SecurityServiceImpl implements SecurityService {
     }
 
     @Override
-    public VTUser findLoggedInVT_User() throws VTUserNotFoundException {
+    public VTUser findLoggedInVT_User() {
         String username = findLoggedInUsername();
-        if(username == null) return null;
+        if (username == null) return null;
 
         VTUser user = userService.findByUsername(username);
 
-        if(username == null) throw new VTUserNotFoundException();
+        if (username == null) throw new VTUserNotFoundException();
         return user;
     }
 
     @Override
-    public void regUser(String username, String password) throws VTUserNameOccupiedException {
+    public void regUser(String username, String password) {
 
         if (userService.existsByUsername(username)) throw new VTUserNameOccupiedException();
 
@@ -73,7 +73,7 @@ public class SecurityServiceImpl implements SecurityService {
 
 
     @Override
-    public void autoLogin(String username, String password, HttpServletResponse response) throws VTUserNotFoundException, VTUserWrongPasswordException {
+    public void autoLogin(String username, String password, HttpServletResponse response) {
 
         if (!userService.existsByUsername(username)) throw new VTUserNotFoundException();
 

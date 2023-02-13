@@ -2,7 +2,6 @@ package game.vt.silence.security.service;
 
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.security.model.VTUser;
-import game.vt.silence.exceptions.VTUserNotFoundException;
 
 import java.util.List;
 
@@ -12,7 +11,7 @@ public interface VTUserService {
 
     boolean existsByUsername(String username);
 
-    VTUser findByUsername(String username) throws VTUserNotFoundException;
+    VTUser findByUsername(String username);
 
     void addVTCharacter(VTUser user, VTCharacter character);
 

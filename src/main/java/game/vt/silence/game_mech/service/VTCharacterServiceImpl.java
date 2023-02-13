@@ -1,9 +1,8 @@
 package game.vt.silence.game_mech.service;
 
-import game.vt.silence.exceptions.VTCharacterNotFoundException;
 import game.vt.silence.exceptions.VTCharacterNameOccupiedException;
+import game.vt.silence.exceptions.VTCharacterNotFoundException;
 import game.vt.silence.game_mech.model.VTCharacter;
-import game.vt.silence.exceptions.VTCharacterValueNotFoundException;
 import game.vt.silence.game_mech.repo.VTCharacterRepo;
 import game.vt.silence.security.model.VTUser;
 import game.vt.silence.security.service.VTUserService;
@@ -23,8 +22,8 @@ public class VTCharacterServiceImpl implements VTCharacterService {
     VTUserService userService;
 
     @Override
-    public VTCharacter getVTCharacterByName(String value_name) throws VTCharacterNotFoundException {
-        if(!existsVTCharacterByName(value_name)) throw new VTCharacterNotFoundException();
+    public VTCharacter getVTCharacterByName(String value_name) {
+        if (!existsVTCharacterByName(value_name)) throw new VTCharacterNotFoundException();
         return repo.findByCharname(value_name);
     }
 
@@ -46,21 +45,21 @@ public class VTCharacterServiceImpl implements VTCharacterService {
     }*/
 
     @Override
-    public void createVTCharacter(String value_name) throws VTCharacterValueNotFoundException, VTCharacterNameOccupiedException {
+    public void createVTCharacter(String value_name) {
         if (repo.existsByCharname(value_name)) throw new VTCharacterNameOccupiedException();
 
         VTCharacter character = new VTCharacter();
         character.setCharname(value_name);
         saveVTCharacter(character);
-        logger.info("create new character - {}",character.getCharname());
+        logger.info("create new character - {}", character.getCharname());
     }
 
     @Override
     public void addVTCharacter(VTUser user, VTCharacter character) {
-        userService.addVTCharacter(user,character);
+        userService.addVTCharacter(user, character);
         character.setVtUser(user);
         repo.save(character);
-        logger.info("add character {} to user {}",character.getCharname(),user.getUsername());
+        logger.info("add character {} to user {}", character.getCharname(), user.getUsername());
     }
 
 }
