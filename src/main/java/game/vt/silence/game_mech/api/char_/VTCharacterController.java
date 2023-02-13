@@ -32,8 +32,8 @@ public class VTCharacterController {
             characterService.createVTCharacter(request.getCharname());
         } catch (VTCharacterValueNotFoundException e) {
             return new CharCreateRS("wrong charname", e.getWrongName());
-        } catch (VTCharacterNameOccupiedException e) {
-            return new CharCreateRS("charnamealreadyused", "sometext");
+            //} catch (VTCharacterNameOccupiedException e) {
+            //    return new CharCreateRS("charnamealreadyused", "sometext");
         }
 
         VTUser vtUser = securityService.findLoggedInVT_User();
@@ -48,16 +48,8 @@ public class VTCharacterController {
 
     @SneakyThrows
     @PostMapping("/char")
-    public String charFind(@RequestBody CharRQ request) {
-        VTCharacter vtCharacter = null;
-
-        try {
-            vtCharacter = characterService.getVTCharacterByName(request.getCharname());
-        } catch (VTCharacterNotFoundException e) {
-            return jackson.writeValueAsString(new CharRS("wrong charname", "character not found"));
-        }
-
-        return jackson.writeValueAsString(vtCharacter);
+    public VTCharacter charFind(@RequestBody CharRQ request) {
+        return characterService.getVTCharacterByName(request.getCharname());
     }
 
 
