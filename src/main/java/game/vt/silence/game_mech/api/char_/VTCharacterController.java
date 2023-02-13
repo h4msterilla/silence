@@ -1,7 +1,8 @@
 package game.vt.silence.game_mech.api.char_;
 
+import game.vt.silence.exceptions.handlers.StatusRS;
+import game.vt.silence.exceptions.handlers.StatusType;
 import game.vt.silence.game_mech.api.char_.DTO.CharCreateRQ;
-import game.vt.silence.game_mech.api.char_.DTO.CharCreateRS;
 import game.vt.silence.game_mech.api.char_.DTO.CharRQ;
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.service.VTCharacterService;
@@ -21,7 +22,7 @@ public class VTCharacterController {
     SecurityService securityService;
 
     @PostMapping("/char/create")
-    public CharCreateRS charCreate(@RequestBody CharCreateRQ request) {
+    public StatusRS charCreate(@RequestBody CharCreateRQ request) {
         characterService.createVTCharacter(request.getCharname());
 
         VTUser vtUser = securityService.findLoggedInVT_User();
@@ -29,9 +30,7 @@ public class VTCharacterController {
 
         characterService.addVTCharacter(vtUser, vtCharacter);
 
-        return new CharCreateRS("createsuccess",
-                "user: " + vtUser.getUsername()
-                        + " has create character: " + vtCharacter.getCharname());
+        return new StatusRS(StatusType.SUCCESS, "Character create success");
     }
 
     @PostMapping("/char")
