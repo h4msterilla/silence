@@ -2,6 +2,7 @@ package game.vt.silence.security.service;
 
 import game.vt.silence.exceptions.VTUserNotFoundException;
 import game.vt.silence.game_mech.model.VTCharacter;
+import game.vt.silence.game_mech.model.VTCharacterValue;
 import game.vt.silence.security.model.VTUser;
 import game.vt.silence.security.repo.VTUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +45,9 @@ public class VTUserServiceImpl implements VTUserService {
     }
 
     @Override
-    public List<String> getVTCharactersByUsername(String username) {
-
-
-        return null;
+    public List<VTCharacter> getVTCharactersByUsername(String username) {
+        VTUser vtUser = findByUsername(username);
+        return vtUser.getVtCharacterList();
+        //return null;
     }
 }

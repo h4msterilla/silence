@@ -15,6 +15,6 @@ public interface VTUserService {
 
     void addVTCharacter(VTUser user, VTCharacter character);
 
-    List<String> getVTCharactersByUsername(String username);
+    List<VTCharacter> getVTCharactersByUsername(String username);
 
 }

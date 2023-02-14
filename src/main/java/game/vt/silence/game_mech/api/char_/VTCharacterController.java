@@ -3,14 +3,18 @@ package game.vt.silence.game_mech.api.char_;
 import game.vt.silence.exceptions.handlers.StatusRS;
 import game.vt.silence.exceptions.handlers.StatusType;
 import game.vt.silence.game_mech.api.char_.DTO.CharCreateRQ;
+import game.vt.silence.game_mech.api.char_.DTO.CharListRQ;
 import game.vt.silence.game_mech.api.char_.DTO.CharRQ;
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.service.VTCharacterInitService;
 import game.vt.silence.game_mech.service.VTCharacterService;
+import game.vt.silence.security.service.VTUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class VTCharacterController {
@@ -19,6 +23,8 @@ public class VTCharacterController {
     VTCharacterService characterService;
     @Autowired
     VTCharacterInitService vtCharacterInitService;
+    @Autowired
+    VTUserService vtUserService;
 
     @PostMapping("/char/create")
     public StatusRS charCreate(@RequestBody CharCreateRQ request) {
@@ -32,8 +38,7 @@ public class VTCharacterController {
     }
 
     @PostMapping("/char/list")
-    public String charList(@RequestBody CharCreateRQ request) {
-
-        return "text";
+    public List<VTCharacter> charList(@RequestBody CharListRQ request) {
+        return vtUserService.getVTCharactersByUsername(request.getUsername());
     }
 }
