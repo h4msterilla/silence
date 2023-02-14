@@ -33,7 +33,7 @@ public class VTCharacter {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JsonIgnore
-    List<VTCharacterValue> values = new ArrayList<>();
+    private List<VTCharacterValue> values = new ArrayList<>();
 
     public void addVTCharacterValue(VTCharacterValue vtCharacterValue) {
         values.add(vtCharacterValue);

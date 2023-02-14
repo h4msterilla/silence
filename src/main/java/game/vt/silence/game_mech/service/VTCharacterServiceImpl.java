@@ -3,23 +3,19 @@ package game.vt.silence.game_mech.service;
 import game.vt.silence.exceptions.VTCharacterNameOccupiedException;
 import game.vt.silence.exceptions.VTCharacterNotFoundException;
 import game.vt.silence.game_mech.model.VTCharacter;
+import game.vt.silence.game_mech.model.VTCharacterValue;
 import game.vt.silence.game_mech.repo.VTCharacterRepo;
 import game.vt.silence.security.model.VTUser;
-import game.vt.silence.security.service.VTUserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class VTCharacterServiceImpl implements VTCharacterService {
 
-    private static final Logger logger = LoggerFactory.getLogger(VTCharacterServiceImpl.class);
-
     @Autowired
     VTCharacterRepo repo;
-    @Autowired
-    VTUserService userService;
 
     @Override
     public VTCharacter getVTCharacterByName(String value_name) {
@@ -37,29 +33,29 @@ public class VTCharacterServiceImpl implements VTCharacterService {
         repo.save(character);
     }
 
-    /*@Override
-    public void changeCharValueByName(String character, String valueName, String up_down) throws WrongCharacterValueNameException, CharacterNotFoundException {
-        //VTCharacter vt_Character = getVTCharacterByName(character);
-        //vt_Character.changeValueByName(valueName, up_down);//-------------------------------------------------!
-        //saveVTCharacter(vt_Character);
-    }*/
-
     @Override
     public void createVTCharacter(String value_name) {
         if (repo.existsByCharname(value_name)) throw new VTCharacterNameOccupiedException();
-
         VTCharacter character = new VTCharacter();
         character.setCharname(value_name);
         saveVTCharacter(character);
-        logger.info("create new character - {}", character.getCharname());
     }
 
     @Override
-    public void addVTCharacter(VTUser user, VTCharacter character) {
-        userService.addVTCharacter(user, character);
+    public void addVTUser(VTCharacter character, VTUser user) {
         character.setVtUser(user);
         repo.save(character);
-        logger.info("add character {} to user {}", character.getCharname(), user.getUsername());
+    }
+
+    @Override
+    public void addVTCharacterValue(VTCharacter vtCharacter, VTCharacterValue vtCharacterValue) {
+        vtCharacter.addVTCharacterValue(vtCharacterValue);
+        repo.save(vtCharacter);
+    }
+
+    @Override
+    public void addVTCharacterValue(VTCharacter vtCharacter, List<VTCharacterValue> vtCharacterValues) {
+        vtCharacterValues.forEach(x -> this.addVTCharacterValue(vtCharacter, x));
     }
 
 }

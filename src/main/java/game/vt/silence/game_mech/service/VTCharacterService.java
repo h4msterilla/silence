@@ -1,7 +1,10 @@
 package game.vt.silence.game_mech.service;
 
 import game.vt.silence.game_mech.model.VTCharacter;
+import game.vt.silence.game_mech.model.VTCharacterValue;
 import game.vt.silence.security.model.VTUser;
+
+import java.util.List;
 
 public interface VTCharacterService {
 
@@ -9,12 +12,13 @@ public interface VTCharacterService {
 
     boolean existsVTCharacterByName(String value_name);
 
-    void saveVTCharacter(VTCharacter character);
-
-    //void changeCharValueByName(String character, String valueName, String up_down) throws WrongCharacterValueNameException, CharacterNotFoundException;
+    void saveVTCharacter(VTCharacter vtCharacter);
 
     void createVTCharacter(String value_name);
 
-    void addVTCharacter(VTUser user, VTCharacter character);
+    void addVTUser(VTCharacter vtCharacter, VTUser vtUser);
 
+    void addVTCharacterValue(VTCharacter vtCharacter, VTCharacterValue vtCharacterValue);
+
+    void addVTCharacterValue(VTCharacter vtCharacter, List<VTCharacterValue> vtCharacterValues);
 }
