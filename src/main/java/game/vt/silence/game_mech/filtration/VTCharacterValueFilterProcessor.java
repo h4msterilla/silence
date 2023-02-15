@@ -13,11 +13,11 @@ public class VTCharacterValueFilterProcessor {
     @Autowired
     List<VTCharacterValueFilter> filters;
 
-    public void doFilter(VTCharacterValue vtCharacterValue, String upDown){
+    public void doFilter(List<VTCharacterValue> vtCharacterValues, VTCharacterValue vtCharacterValue, String upDown){
         filters
                 .stream()
                 .sorted(Comparator.comparingInt(VTCharacterValueFilter::getOrder))
-                .forEach(x -> x.doFilter(vtCharacterValue, upDown));
+                .forEach(x -> x.doFilter(vtCharacterValues, vtCharacterValue, upDown));
     }
 
 }
