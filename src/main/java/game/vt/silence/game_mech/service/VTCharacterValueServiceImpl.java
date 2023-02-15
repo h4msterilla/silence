@@ -1,7 +1,6 @@
 package game.vt.silence.game_mech.service;
 
 import game.vt.silence.beans.DefaultVTCharacterValuesLoader;
-import game.vt.silence.exceptions.VTCharacterValueNotFoundException;
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.model.VTCharacterValue;
 import game.vt.silence.game_mech.repo.VTCharacterValueRepo;
@@ -9,13 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class VTCharacterValueServiceImpl implements VTCharacterValueService {
 
-    @Autowired
-    VTCharacterService vtCharacterService;
     @Autowired
     VTCharacterValueRepo vtCharacterValueRepo;
 
@@ -41,16 +37,17 @@ public class VTCharacterValueServiceImpl implements VTCharacterValueService {
         save(vtCharacterValues);
     }
 
-    @Override
-    public void edit(String vtCharname, String vtCharacterValue, String upDown) {
-    }
-
     @Autowired
     DefaultVTCharacterValuesLoader loader;
 
     @Override
     public List<VTCharacterValue> getDefaultVTCharacterValuesList() {
         return loader.getAsList();
+    }
+
+    @Override
+    public List<VTCharacterValue> getVTCharacterValuesByVTCharacter(VTCharacter vtCharacter) {
+        return vtCharacterValueRepo.findByVtCharacter(vtCharacter);
     }
 
 }

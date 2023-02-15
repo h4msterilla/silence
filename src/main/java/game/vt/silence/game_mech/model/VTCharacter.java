@@ -31,7 +31,7 @@ public class VTCharacter {
     private String self = ""; //меняемое
     private String phenotype = "";//финальное
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany//(cascade = CascadeType.ALL)
     @JsonIgnore
     private List<VTCharacterValue> values = new ArrayList<>();
 

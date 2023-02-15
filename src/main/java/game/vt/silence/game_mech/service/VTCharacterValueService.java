@@ -15,8 +15,8 @@ public interface VTCharacterValueService {
 
     void setVTCharacter(List<VTCharacterValue> vtCharacterValues, VTCharacter vtCharacter);
 
-    void edit(String vtCharname, String vtCharacterValue, String upDown);
-
     List<VTCharacterValue> getDefaultVTCharacterValuesList();
+
+    List<VTCharacterValue> getVTCharacterValuesByVTCharacter(VTCharacter vtCharacter);
 
 }

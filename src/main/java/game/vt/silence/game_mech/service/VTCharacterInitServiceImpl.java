@@ -34,10 +34,10 @@ public class VTCharacterInitServiceImpl implements VTCharacterInitService {
         List<VTCharacterValue> vtCharacterValues = vtCharacterValueService.getDefaultVTCharacterValuesList();
         VTUser vtUser = securityService.findLoggedInVT_User();
 
-        vtUserService.addVTCharacter(vtUser, vtCharacter);
+        vtCharacterValueService.setVTCharacter(vtCharacterValues, vtCharacter);
         vtCharacterService.addVTUser(vtCharacter, vtUser);
         vtCharacterService.addVTCharacterValue(vtCharacter, vtCharacterValues);
-        vtCharacterValueService.setVTCharacter(vtCharacterValues, vtCharacter);
+        vtUserService.addVTCharacter(vtUser, vtCharacter);
 
         logger.info("create new character - {} - by user - {}", characterName, vtUser.getUsername());
     }
