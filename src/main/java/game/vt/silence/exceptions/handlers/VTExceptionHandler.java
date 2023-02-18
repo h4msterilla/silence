@@ -22,7 +22,9 @@ public class VTExceptionHandler extends ResponseEntityExceptionHandler {
 
             VTCharacterValueNotFoundException.class,
 
-            VTValidationException.class
+            VTValidationException.class,
+
+            VTCharacterValueBreakRuleException.class
     })
     protected ResponseEntity<Object> handleVTUserExceptions(RuntimeException e, WebRequest webRequest){
         return handleExceptionInternal(
