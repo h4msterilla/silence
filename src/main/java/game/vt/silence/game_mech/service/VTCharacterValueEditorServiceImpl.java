@@ -33,4 +33,10 @@ public class VTCharacterValueEditorServiceImpl implements VTCharacterValueEditor
 
         vtCharacterValueService.save(vtCharacterValues);
     }
+
+    @Override
+    public List<VTCharacterValue> getValues(String charName) {
+        VTCharacter vtCharacter = vtCharacterService.getVTCharacterByName(charName);
+        return vtCharacterValueService.getVTCharacterValuesByVTCharacter(vtCharacter);
+    }
 }

@@ -1,5 +1,6 @@
 package game.vt.silence.game_mech.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,10 +19,12 @@ public class VTCharacterValue {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @JsonIgnore
     private String type;
     private String name;
     private int value;
 
     @ManyToOne
+    @JsonIgnore
     private VTCharacter vtCharacter;
 }
