@@ -12,7 +12,7 @@ import java.util.Map;
 public class ActualExpRule implements VTCharacterValueRule {
 
     @Override
-    public void doRule(Map<String, VTCharacterValue> vtValueMap, VTCharacterValue vtCharacterValue, String upDown, VTCharacterValueRulesChainState state) {
+    public void doRule(Map<String, VTCharacterValue> vtValueMap, VTCharacterValue vtCharacterValue, int upDownArg, VTCharacterValueRulesChainState state) {
 
         System.out.println("in " + this.getClass().getSimpleName());
 

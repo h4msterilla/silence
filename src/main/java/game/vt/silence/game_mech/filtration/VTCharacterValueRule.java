@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface VTCharacterValueRule {
 
-    void doRule(Map<String, VTCharacterValue> vtValueMap, VTCharacterValue vtCharacterValue, String upDown, VTCharacterValueRulesChainState state);
+    void doRule(Map<String, VTCharacterValue> vtValueMap, VTCharacterValue vtCharacterValue, int upDownArg, VTCharacterValueRulesChainState state);
 
     int getOrder();
 }

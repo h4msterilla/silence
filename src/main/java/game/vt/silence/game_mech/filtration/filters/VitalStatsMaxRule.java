@@ -12,7 +12,7 @@ import java.util.Map;
 @Component
 public class VitalStatsMaxRule implements VTCharacterValueRule {
     @Override
-    public void doRule(Map<String, VTCharacterValue> vtValueMap, VTCharacterValue vtCharacterValue, String upDown, VTCharacterValueRulesChainState state) {
+    public void doRule(Map<String, VTCharacterValue> vtValueMap, VTCharacterValue vtCharacterValue, int upDownArg, VTCharacterValueRulesChainState state) {
 
         if (vtCharacterValue.getName().equals("vital_stats_health_max")
                 || vtCharacterValue.getName().equals("vital_stats_sanity_max"))

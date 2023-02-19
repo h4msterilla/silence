@@ -23,6 +23,13 @@ public class VTCharacterValueRulesChain {
         if (!(upDown.equalsIgnoreCase("up") || upDown.equalsIgnoreCase("down")))
             throw new VTCharacterValueBreakRuleException("wrong up/down argument");
 
+        int upDownArg;
+
+        if(upDown.equalsIgnoreCase("up"))
+            upDownArg = 1;
+        else
+            upDownArg = -1;
+
         Map<String, VTCharacterValue> vtValueMap = vtCharacterValues.stream()
                 .collect(Collectors.toMap(x -> x.getName(), Function.identity()));
 
@@ -30,7 +37,7 @@ public class VTCharacterValueRulesChain {
         rules
                 .stream()
                 .sorted(Comparator.comparingInt(VTCharacterValueRule::getOrder))
-                .forEach(x -> x.doRule(vtValueMap, vtCharacterValue, upDown, state));
+                .forEach(x -> x.doRule(vtValueMap, vtCharacterValue, upDownArg, state));
 
         if (state.getState() == VTCharacterValueRulesChainStates.NOT_EDIT)
             throw new VTCharacterValueNotFoundException();

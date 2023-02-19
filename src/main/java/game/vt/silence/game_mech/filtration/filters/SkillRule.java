@@ -13,17 +13,11 @@ import java.util.Map;
 @Component
 public class SkillRule implements VTCharacterValueRule {
     @Override
-    public void doRule(Map<String, VTCharacterValue> vtValueMap, VTCharacterValue vtCharacterValue, String upDown, VTCharacterValueRulesChainState state) {
+    public void doRule(Map<String, VTCharacterValue> vtValueMap, VTCharacterValue vtCharacterValue, int upDownArg, VTCharacterValueRulesChainState state) {
 
         System.out.println("in " + this.getClass().getSimpleName());
 
         if (!vtCharacterValue.getType().equalsIgnoreCase("skill")) return;
-
-        int upDownArg;
-        if (upDown.equalsIgnoreCase("up"))
-            upDownArg = 1;
-        else
-            upDownArg = -1;
 
         int expMax = vtValueMap.get("value_experience_max").getValue();
         int expActual = vtValueMap.get("value_experience_actual").getValue();
