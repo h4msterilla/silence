@@ -1,5 +1,6 @@
 package game.vt.silence.game_mech.filtration;
 
+import game.vt.silence.exceptions.VTCharacterValueBreakRuleException;
 import game.vt.silence.exceptions.VTCharacterValueNotFoundException;
 import game.vt.silence.game_mech.model.VTCharacterValue;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class VTCharacterValueRulesChain {
     List<VTCharacterValueRule> rules;
 
     public void doChain(List<VTCharacterValue> vtCharacterValues, VTCharacterValue vtCharacterValue, String upDown) {
+
+        if (!(upDown.equalsIgnoreCase("up") || upDown.equalsIgnoreCase("down")))
+            throw new VTCharacterValueBreakRuleException("wrong up/down argument");
 
         Map<String, VTCharacterValue> vtValueMap = vtCharacterValues.stream()
                 .collect(Collectors.toMap(x -> x.getName(), Function.identity()));

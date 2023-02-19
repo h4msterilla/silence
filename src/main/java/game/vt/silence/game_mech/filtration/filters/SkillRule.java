@@ -19,9 +19,6 @@ public class SkillRule implements VTCharacterValueRule {
 
         if (!vtCharacterValue.getType().equalsIgnoreCase("skill")) return;
 
-        if (!(upDown.equalsIgnoreCase("up") || upDown.equalsIgnoreCase("down")))
-            throw new VTCharacterValueBreakRuleException("wrong up/down argument");
-
         int upDownArg;
         if (upDown.equalsIgnoreCase("up"))
             upDownArg = 1;
