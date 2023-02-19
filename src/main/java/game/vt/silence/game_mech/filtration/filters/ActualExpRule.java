@@ -4,13 +4,17 @@ import game.vt.silence.exceptions.VTCharacterValueBreakRuleException;
 import game.vt.silence.game_mech.filtration.VTCharacterValueRule;
 import game.vt.silence.game_mech.filtration.VTCharacterValueRulesChainState;
 import game.vt.silence.game_mech.model.VTCharacterValue;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+@Component
 public class ActualExpRule implements VTCharacterValueRule {
 
     @Override
     public void doRule(Map<String, VTCharacterValue> vtValueMap, VTCharacterValue vtCharacterValue, String upDown, VTCharacterValueRulesChainState state) {
+
+        System.out.println("in " + this.getClass().getSimpleName());
 
         if(vtCharacterValue.getName().equalsIgnoreCase("value_experience_actual"))
             throw new VTCharacterValueBreakRuleException("unmodifiable value");

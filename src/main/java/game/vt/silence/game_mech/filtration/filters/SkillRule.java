@@ -14,7 +14,8 @@ import java.util.Map;
 public class SkillRule implements VTCharacterValueRule {
     @Override
     public void doRule(Map<String, VTCharacterValue> vtValueMap, VTCharacterValue vtCharacterValue, String upDown, VTCharacterValueRulesChainState state) {
-        System.out.println("in SkillFilter");
+
+        System.out.println("in " + this.getClass().getSimpleName());
 
         if (!vtCharacterValue.getType().equalsIgnoreCase("skill")) return;
 
@@ -30,7 +31,7 @@ public class SkillRule implements VTCharacterValueRule {
         int expMax = vtValueMap.get("value_experience_max").getValue();
         int expActual = vtValueMap.get("value_experience_actual").getValue();
 
-        if (expActual + upDownArg >= expMax)
+        if (expActual + upDownArg > expMax)
             throw new VTCharacterValueBreakRuleException("not enough experience to up skill");
 
         int skillValue = vtCharacterValue.getValue();
@@ -38,7 +39,7 @@ public class SkillRule implements VTCharacterValueRule {
         if (skillValue + upDownArg > 8)
             throw new VTCharacterValueBreakRuleException("skill can not be upper then 8");
 
-        if (skillValue + upDownArg <= 0)
+        if (skillValue + upDownArg < 0)
             throw new VTCharacterValueBreakRuleException("skill can not be lower then 0");
 
         vtCharacterValue.setValue(skillValue + upDownArg);
