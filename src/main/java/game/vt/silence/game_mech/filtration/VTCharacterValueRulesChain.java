@@ -38,8 +38,7 @@ public class VTCharacterValueRulesChain {
                 .stream()
                 .sorted(Comparator.comparingInt(VTCharacterValueRule::getOrder))
                 .forEach(x -> {x.doRule(vtValueMap, vtCharacterValue, upDownArg, state);
-                System.out.println(vtCharacterValue.getValue() + " in " + x.getClass().getSimpleName());
-
+                //System.out.println(vtCharacterValue.getValue() + " in " + x.getClass().getSimpleName());
                 });
 
         if (state.getState() == VTCharacterValueRulesChainStates.NOT_EDIT)
