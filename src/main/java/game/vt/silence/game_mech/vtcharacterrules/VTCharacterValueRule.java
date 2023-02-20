@@ -1,8 +1,7 @@
-package game.vt.silence.game_mech.filtration;
+package game.vt.silence.game_mech.vtcharacterrules;
 
 import game.vt.silence.game_mech.model.VTCharacterValue;
 
-import java.util.List;
 import java.util.Map;
 
 public interface VTCharacterValueRule {

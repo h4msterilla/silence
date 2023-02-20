@@ -1,6 +1,6 @@
 package game.vt.silence.game_mech.service;
 
-import game.vt.silence.game_mech.filtration.VTCharacterValueRulesChain;
+import game.vt.silence.game_mech.vtcharacterrules.VTCharacterValueRulesChain;
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.model.VTCharacterValue;
 import org.springframework.beans.factory.annotation.Autowired;

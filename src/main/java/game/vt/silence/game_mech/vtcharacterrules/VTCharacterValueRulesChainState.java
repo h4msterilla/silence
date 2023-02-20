@@ -1,4 +1,4 @@
-package game.vt.silence.game_mech.filtration;
+package game.vt.silence.game_mech.vtcharacterrules;
 
 import lombok.Getter;
 import lombok.Setter;

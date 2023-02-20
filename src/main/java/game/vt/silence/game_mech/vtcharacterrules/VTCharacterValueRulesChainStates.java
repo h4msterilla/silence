@@ -1,4 +1,4 @@
-package game.vt.silence.game_mech.filtration;
+package game.vt.silence.game_mech.vtcharacterrules;
 
 public enum VTCharacterValueRulesChainStates {//present only modifiable values
     NOT_EDIT,

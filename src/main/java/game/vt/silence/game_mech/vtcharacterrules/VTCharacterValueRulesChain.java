@@ -1,4 +1,4 @@
-package game.vt.silence.game_mech.filtration;
+package game.vt.silence.game_mech.vtcharacterrules;
 
 import game.vt.silence.exceptions.VTCharacterValueBreakRuleException;
 import game.vt.silence.exceptions.VTCharacterValueNotFoundException;
