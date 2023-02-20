@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 @Component
-public class ActualExpRule implements VTCharacterValueRule {
+public class ExpActualRule implements VTCharacterValueRule {
 
     @Override
     public void doRule(Map<String, VTCharacterValue> vtValueMap, VTCharacterValue vtCharacterValue, int upDownArg, VTCharacterValueRulesChainState state) {
