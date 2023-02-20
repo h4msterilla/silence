@@ -23,7 +23,7 @@ public class TalentLimitRule implements VTCharacterValueRule {
                         .filter(x -> x.getType().equalsIgnoreCase("block"))
                         .reduce(0, (sum, value) -> sum + (value.getValue() - value.getValue() % 2) / 2, Integer::sum);
 
-        vtCharacterValue.setValue(talentLimit);
+        vtValueMap.get("talent_limit").setValue(talentLimit);
     }
 
     @Override

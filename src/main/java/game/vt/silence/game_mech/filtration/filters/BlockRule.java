@@ -3,7 +3,6 @@ package game.vt.silence.game_mech.filtration.filters;
 import game.vt.silence.exceptions.VTCharacterValueBreakRuleException;
 import game.vt.silence.game_mech.filtration.VTCharacterValueRule;
 import game.vt.silence.game_mech.filtration.VTCharacterValueRulesChainState;
-import game.vt.silence.game_mech.filtration.VTCharacterValueRulesChainStates;
 import game.vt.silence.game_mech.model.VTCharacterValue;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +13,6 @@ public class BlockRule implements VTCharacterValueRule {
 
     @Override
     public void doRule(Map<String, VTCharacterValue> vtValueMap, VTCharacterValue vtCharacterValue, int upDownArg, VTCharacterValueRulesChainState state) {
-
-        System.out.println("in " + this.getClass().getSimpleName());
 
         if (vtCharacterValue.getName().contains("block_"))
             throw new VTCharacterValueBreakRuleException("unmodifiable value");
@@ -33,11 +30,6 @@ public class BlockRule implements VTCharacterValueRule {
         blockSum = (blockSum - (blockSum % 3)) / 3;
         String blockName = "block_" + shortBlockName;
         vtValueMap.get(blockName).setValue(blockSum);
-
-        /*state.setState(VTCharacterValueRulesChainStates
-                .valueOf(
-                        state.getState().toString().replace("SKILL", "BLOCK")
-                ));*/
 
     }
 

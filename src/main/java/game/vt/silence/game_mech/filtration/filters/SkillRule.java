@@ -15,8 +15,6 @@ public class SkillRule implements VTCharacterValueRule {
     @Override
     public void doRule(Map<String, VTCharacterValue> vtValueMap, VTCharacterValue vtCharacterValue, int upDownArg, VTCharacterValueRulesChainState state) {
 
-        System.out.println("in " + this.getClass().getSimpleName());
-
         if (!vtCharacterValue.getType().equalsIgnoreCase("skill")) return;
 
         int expMax = vtValueMap.get("value_experience_max").getValue();
@@ -25,16 +23,15 @@ public class SkillRule implements VTCharacterValueRule {
         if (expActual + upDownArg > expMax)
             throw new VTCharacterValueBreakRuleException("not enough experience to up skill");
 
-        int skillValue = vtCharacterValue.getValue();
-
-        if (skillValue + upDownArg > 8)
+        if (vtCharacterValue.getValue() + upDownArg > 8)
             throw new VTCharacterValueBreakRuleException("skill can not be upper then 8");
 
-        if (skillValue + upDownArg < 0)
+        if (vtCharacterValue.getValue() + upDownArg < 0)
             throw new VTCharacterValueBreakRuleException("skill can not be lower then 0");
 
-        vtCharacterValue.setValue(skillValue + upDownArg);
+        vtCharacterValue.setValue(vtCharacterValue.getValue() + upDownArg);
         state.setState(blockType(vtCharacterValue.getName()));
+
     }
 
     @Override

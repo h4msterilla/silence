@@ -26,6 +26,6 @@ public class ConnectionAndKnowledgeRule implements VTCharacterValueRule {
 
     @Override
     public int getOrder() {
-        return 0;
+        return 100;
     }
 }

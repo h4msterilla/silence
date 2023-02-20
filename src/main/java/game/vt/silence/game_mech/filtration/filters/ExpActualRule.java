@@ -14,8 +14,6 @@ public class ExpActualRule implements VTCharacterValueRule {
     @Override
     public void doRule(Map<String, VTCharacterValue> vtValueMap, VTCharacterValue vtCharacterValue, int upDownArg, VTCharacterValueRulesChainState state) {
 
-        System.out.println("in " + this.getClass().getSimpleName());
-
         if(vtCharacterValue.getName().equalsIgnoreCase("value_experience_actual"))
             throw new VTCharacterValueBreakRuleException("unmodifiable value");
 
