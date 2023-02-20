@@ -1,6 +1,7 @@
 value,value_experience_max
 value,value_experience_actual
 value,value_ticks
+talent,talent_limit
 #
 value,vital_stats_health_max
 value,vital_stats_health_actual
