@@ -17,4 +17,7 @@ public class VTPrehistoryEpisode {
     String episodeDescription;
     String bonusesDescription;
 
+    String defaultBonus;
+    String addBonus;
+
 }
