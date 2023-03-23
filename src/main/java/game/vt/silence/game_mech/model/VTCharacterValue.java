@@ -22,6 +22,7 @@ public class VTCharacterValue {
     @JsonIgnore
     private String type;
     private String name;
+    private VTValue valueName;
     private int value;
 
     @ManyToOne
