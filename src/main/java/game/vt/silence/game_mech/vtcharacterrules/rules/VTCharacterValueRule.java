@@ -1,6 +1,7 @@
-package game.vt.silence.game_mech.vtcharacterrules;
+package game.vt.silence.game_mech.vtcharacterrules.rules;
 
 import game.vt.silence.game_mech.model.VTCharacterValue;
+import game.vt.silence.game_mech.vtcharacterrules.VTCharacterValueRulesChainState;
 
 import java.util.Map;
 
