@@ -3,6 +3,7 @@ package game.vt.silence.game_mech.service;
 import game.vt.silence.beans.DefaultVTCharacterValuesLoader;
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.model.VTCharacterValue;
+import game.vt.silence.game_mech.model.factories.VTCharacterValueListFactory;
 import game.vt.silence.game_mech.repo.VTCharacterValueRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,12 +38,15 @@ public class VTCharacterValueServiceImpl implements VTCharacterValueService {
         save(vtCharacterValues);
     }
 
+    //@Autowired
+    //DefaultVTCharacterValuesLoader loader;
+
     @Autowired
-    DefaultVTCharacterValuesLoader loader;
+    VTCharacterValueListFactory vtCharacterValueListFactory;
 
     @Override
     public List<VTCharacterValue> getDefaultVTCharacterValuesList() {
-        return loader.getAsList();
+        return vtCharacterValueListFactory.getNewVTCharacterValueList();
     }
 
     @Override
