@@ -1,5 +1,7 @@
-package game.vt.silence.game_mech.model;
+package game.vt.silence.game_mech.model.factories;
 
+import game.vt.silence.game_mech.model.VTCharacter;
+import game.vt.silence.game_mech.model.VTCharacterValue;
 import game.vt.silence.game_mech.service.VTCharacterService;
 import game.vt.silence.game_mech.service.VTCharacterValueService;
 import lombok.SneakyThrows;
@@ -12,7 +14,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 
 @Component
-public class VTCharacterFactory {
+public class VTCharacterFactoryImpl {
 
     @Autowired
     VTCharacterService vtCharacterService;
@@ -23,7 +25,7 @@ public class VTCharacterFactory {
     String valuesFile;
 
     @SneakyThrows
-    public VTCharacterFactory() {
+    public VTCharacterFactoryImpl() {
         file = ResourceUtils.getFile("classpath:character-values");
         InputStream in = new FileInputStream(file);
         valuesFile = new String(in.readAllBytes());
