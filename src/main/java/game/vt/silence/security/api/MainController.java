@@ -1,7 +1,7 @@
 package game.vt.silence.security.api;
 
 import game.vt.silence.game_mech.model.VTCharacter;
-import game.vt.silence.game_mech.service.VTCharacterServiceImpl;
+import game.vt.silence.game_mech.service.datasavelayer.VTCharacterServiceImpl;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

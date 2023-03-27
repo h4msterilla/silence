@@ -1,6 +1,5 @@
-package game.vt.silence.game_mech.service;
+package game.vt.silence.game_mech.service.datasavelayer;
 
-import game.vt.silence.beans.DefaultVTCharacterValuesLoader;
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.model.VTCharacterValue;
 import game.vt.silence.game_mech.model.factories.VTCharacterValueListFactory;

@@ -1,5 +1,7 @@
-package game.vt.silence.game_mech.service;
+package game.vt.silence.game_mech.service.alayer;
 
+import game.vt.silence.game_mech.service.datasavelayer.VTCharacterService;
+import game.vt.silence.game_mech.service.datasavelayer.VTCharacterValueService;
 import game.vt.silence.game_mech.vtcharacterrules.VTCharacterValueRulesChain;
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.model.VTCharacterValue;
