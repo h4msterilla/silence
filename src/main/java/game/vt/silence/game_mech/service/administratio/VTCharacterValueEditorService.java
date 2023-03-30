@@ -1,4 +1,4 @@
-package game.vt.silence.game_mech.service.alayer;
+package game.vt.silence.game_mech.service.administratio;
 
 import game.vt.silence.game_mech.model.VTCharacterValue;
 

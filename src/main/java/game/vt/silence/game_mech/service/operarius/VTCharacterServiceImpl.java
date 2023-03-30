@@ -1,4 +1,4 @@
-package game.vt.silence.game_mech.service.datasavelayer;
+package game.vt.silence.game_mech.service.operarius;
 
 import game.vt.silence.exceptions.VTCharacterNameOccupiedException;
 import game.vt.silence.exceptions.VTCharacterNotFoundException;

@@ -1,9 +1,9 @@
-package game.vt.silence.game_mech.service.alayer;
+package game.vt.silence.game_mech.service.administratio;
 
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.model.VTCharacterValue;
-import game.vt.silence.game_mech.service.datasavelayer.VTCharacterService;
-import game.vt.silence.game_mech.service.datasavelayer.VTCharacterValueService;
+import game.vt.silence.game_mech.service.operarius.VTCharacterService;
+import game.vt.silence.game_mech.service.operarius.VTCharacterValueService;
 import game.vt.silence.security.model.VTUser;
 import game.vt.silence.security.service.SecurityService;
 import game.vt.silence.security.service.VTUserService;
