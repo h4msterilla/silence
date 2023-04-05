@@ -31,6 +31,7 @@ public class VTCharacterController {
 
     @PostMapping("/char/create")
     public StatusRS charCreate(@RequestBody CharCreateRQ request) {
+        System.out.println(securityService.findLoggedInVT_User().getUsername());
         vtCharacterInitService.init(request.getCharname(), securityService.findLoggedInVT_User().getUsername());
         return new StatusRS(StatusType.SUCCESS, "Character create success");
     }

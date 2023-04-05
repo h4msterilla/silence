@@ -34,7 +34,7 @@ public class VTCharacterInitServiceImpl implements VTCharacterInitService {
 
         VTCharacter vtCharacter = vtCharacterService.getVTCharacterByName(vtCharacterName);
         List<VTCharacterValue> vtCharacterValues = vtCharacterValueService.getDefaultVTCharacterValuesList();
-        VTUser vtUser = vtUserService.findByUsername(vtCharacterName);
+        VTUser vtUser = vtUserService.findByUsername(vtUserName);
 
         vtCharacterValueService.setVTCharacter(vtCharacterValues, vtCharacter);
         vtCharacterService.addVTCharacterValue(vtCharacter,vtCharacterValues);
