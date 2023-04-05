@@ -8,6 +8,7 @@ import game.vt.silence.game_mech.api.char_.DTO.CharRQ;
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.service.administratio.VTCharacterInitService;
 import game.vt.silence.game_mech.service.operarius.VTCharacterService;
+import game.vt.silence.security.service.SecurityService;
 import game.vt.silence.security.service.VTUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,10 +26,12 @@ public class VTCharacterController {
     VTCharacterInitService vtCharacterInitService;
     @Autowired
     VTUserService vtUserService;
+    @Autowired
+    SecurityService securityService;
 
     @PostMapping("/char/create")
     public StatusRS charCreate(@RequestBody CharCreateRQ request) {
-        vtCharacterInitService.init(request.getCharname());
+        vtCharacterInitService.init(request.getCharname(), securityService.findLoggedInVT_User().getUsername());
         return new StatusRS(StatusType.SUCCESS, "Character create success");
     }
 

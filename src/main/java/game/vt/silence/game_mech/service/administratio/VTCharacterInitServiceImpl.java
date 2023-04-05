@@ -29,18 +29,19 @@ public class VTCharacterInitServiceImpl implements VTCharacterInitService {
     SecurityService securityService;
 
     @Override
-    public void init(String characterName) {
-        vtCharacterService.createVTCharacter(characterName);
+    public void init(String vtCharacterName, String vtUserName) {
+        vtCharacterService.createVTCharacter(vtCharacterName);
 
-        VTCharacter vtCharacter = vtCharacterService.getVTCharacterByName(characterName);
+        VTCharacter vtCharacter = vtCharacterService.getVTCharacterByName(vtCharacterName);
         List<VTCharacterValue> vtCharacterValues = vtCharacterValueService.getDefaultVTCharacterValuesList();
-        VTUser vtUser = securityService.findLoggedInVT_User();
+        VTUser vtUser = vtUserService.findByUsername(vtCharacterName);
 
         vtCharacterValueService.setVTCharacter(vtCharacterValues, vtCharacter);
+        vtCharacterService.addVTCharacterValue(vtCharacter,vtCharacterValues);
         vtCharacterService.addVTUser(vtCharacter, vtUser);
-        vtCharacterService.addVTCharacterValue(vtCharacter, vtCharacterValues);
-        vtUserService.addVTCharacter(vtUser, vtCharacter);
+        vtUserService.addVTCharacter(vtUser,vtCharacter);
 
-        logger.info("create new character - {} - by user - {}", characterName, vtUser.getUsername());
+        logger.info("create new character - {} - by user - {}", vtCharacter.getCharname(), vtUser.getUsername());
     }
+
 }
