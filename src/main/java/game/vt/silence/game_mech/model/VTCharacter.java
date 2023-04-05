@@ -39,4 +39,8 @@ public class VTCharacter {
         values.add(vtCharacterValue);
     }
 
+    public void addVTCharacterValues(List<VTCharacterValue> vtCharacterValues){
+        values.addAll(vtCharacterValues);
+    }
+
 }

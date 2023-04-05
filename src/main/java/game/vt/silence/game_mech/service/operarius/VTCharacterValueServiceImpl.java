@@ -6,6 +6,7 @@ import game.vt.silence.game_mech.model.factories.VTCharacterValueListFactory;
 import game.vt.silence.game_mech.repo.VTCharacterValueRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class VTCharacterValueServiceImpl implements VTCharacterValueService {
 
     @Override
     public void save(List<VTCharacterValue> vtCharacterValues) {
-        vtCharacterValues.forEach(this::save);
+        vtCharacterValueRepo.saveAll(vtCharacterValues);
     }
 
     @Override
@@ -36,9 +37,6 @@ public class VTCharacterValueServiceImpl implements VTCharacterValueService {
         vtCharacterValues.forEach(x -> x.setVtCharacter(vtCharacter));
         save(vtCharacterValues);
     }
-
-    //@Autowired
-    //DefaultVTCharacterValuesLoader loader;
 
     @Autowired
     VTCharacterValueListFactory vtCharacterValueListFactory;

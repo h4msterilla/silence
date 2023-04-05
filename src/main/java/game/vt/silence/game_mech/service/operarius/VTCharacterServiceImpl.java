@@ -55,7 +55,8 @@ public class VTCharacterServiceImpl implements VTCharacterService {
 
     @Override
     public void addVTCharacterValue(VTCharacter vtCharacter, List<VTCharacterValue> vtCharacterValues) {
-        vtCharacterValues.forEach(x -> this.addVTCharacterValue(vtCharacter, x));
+        vtCharacter.addVTCharacterValues(vtCharacterValues);
+        repo.save(vtCharacter);
     }
 
 }
