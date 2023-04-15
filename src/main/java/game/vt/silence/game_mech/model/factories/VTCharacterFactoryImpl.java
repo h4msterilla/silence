@@ -31,7 +31,7 @@ public class VTCharacterFactoryImpl {
         valuesFile = new String(in.readAllBytes());
     }
 
-    public void createVTCharacter(String charname) {
+    /*public void createVTCharacter(String charname) {
         VTCharacter vtCharacter = new VTCharacter();
         vtCharacter.setCharname(charname);
 
@@ -52,6 +52,6 @@ public class VTCharacterFactoryImpl {
         }
 
         vtCharacterService.saveVTCharacter(vtCharacter);
-    }
+    }*/
 
 }

@@ -19,13 +19,25 @@ public class VTCharacterValue {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @JsonIgnore
-    private String type;
-    private String name;
+    //@JsonIgnore
+    //private String type;
+    //private String name;
     private VTValue valueName;
     private int value;
 
     @ManyToOne
     @JsonIgnore
     private VTCharacter vtCharacter;
+
+    public boolean containsTag(VTValueTag vtValueTag){
+        return valueName.containsTag(vtValueTag);
+    }
+
+    public boolean equalsVTValue(VTValue vtValue){
+        return this.valueName == vtValue;
+    }
+
+    public void modifyValueBy(int arg){
+        value = value + arg;
+    }
 }

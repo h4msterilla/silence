@@ -1,5 +1,7 @@
 package game.vt.silence.game_mech.model;
 
+import game.vt.silence.game_mech.vtcharacterrules.VTCharacterValueRulesChainState;
+
 import java.util.Arrays;
 
 public enum VTValue {
@@ -13,7 +15,7 @@ public enum VTValue {
     VITAL_STATS_HEALTH_ADD(VTValueTag.VITAL_STATE, VTValueTag.HEALTH),
     VITAL_STATS_HEALTH_CRISIS(VTValueTag.VITAL_STATE, VTValueTag.HEALTH),
 
-    BLOCK_ENDURANCE(VTValueTag.BLOCK),
+    BLOCK_ENDURANCE(VTValueTag.BLOCK, VTValueTag.BLOCK_ENDURANCE),
     SKILL_ENDURANCE_PHYSIQUE(VTValueTag.SKILL, VTValueTag.BLOCK_ENDURANCE),
     SKILL_ENDURANCE_HAND_TO_HAND_COMBAT(VTValueTag.SKILL, VTValueTag.BLOCK_ENDURANCE),
     SKILL_ENDURANCE_HEAVY_WEAPONS(VTValueTag.SKILL, VTValueTag.BLOCK_ENDURANCE),
@@ -21,7 +23,7 @@ public enum VTValue {
     SKILL_ENDURANCE_SENSE_OF_TOWN(VTValueTag.SKILL, VTValueTag.BLOCK_ENDURANCE),
     SKILL_ENDURANCE_MUTATION(VTValueTag.SKILL, VTValueTag.BLOCK_ENDURANCE, VTValueTag.SPECIAL_SKILL),
 
-    BLOCK_SWIFTNESS(VTValueTag.BLOCK),
+    BLOCK_SWIFTNESS(VTValueTag.BLOCK, VTValueTag.BLOCK_SWIFTNESS),
     SKILL_SWIFTNESS_PRECISION(VTValueTag.SKILL, VTValueTag.BLOCK_SWIFTNESS),
     SKILL_SWIFTNESS_MOBILITY(VTValueTag.SKILL, VTValueTag.BLOCK_SWIFTNESS),
     SKILL_SWIFTNESS_STEALTH(VTValueTag.SKILL, VTValueTag.BLOCK_SWIFTNESS),
@@ -34,15 +36,15 @@ public enum VTValue {
     VITAL_STATS_SANITY_ADD(VTValueTag.VITAL_STATE, VTValueTag.SANITY),
     VITAL_STATS_SANITY_CRISIS(VTValueTag.VITAL_STATE, VTValueTag.SANITY),
 
-    BLOCK_MIND(VTValueTag.BLOCK),
-    SKILL_MIND_SEARCH(VTValueTag.SPECIAL_SKILL, VTValueTag.BLOCK_MIND),
-    SKILL_MIND_PLANNING(VTValueTag.SPECIAL_SKILL, VTValueTag.BLOCK_MIND),
-    SKILL_MIND_MECHANICS(VTValueTag.SPECIAL_SKILL, VTValueTag.BLOCK_MIND),
-    SKILL_MIND_MEDICINE(VTValueTag.SPECIAL_SKILL, VTValueTag.BLOCK_MIND),
-    SKILL_MIND_CHEMISTRY(VTValueTag.SPECIAL_SKILL, VTValueTag.BLOCK_MIND),
-    SKILL_MIND_AUTOIMMERSION(VTValueTag.SPECIAL_SKILL, VTValueTag.BLOCK_MIND, VTValueTag.SPECIAL_SKILL),
+    BLOCK_MIND(VTValueTag.BLOCK, VTValueTag.BLOCK_MIND),
+    SKILL_MIND_SEARCH(VTValueTag.SKILL, VTValueTag.BLOCK_MIND),
+    SKILL_MIND_PLANNING(VTValueTag.SKILL, VTValueTag.BLOCK_MIND),
+    SKILL_MIND_MECHANICS(VTValueTag.SKILL, VTValueTag.BLOCK_MIND),
+    SKILL_MIND_MEDICINE(VTValueTag.SKILL, VTValueTag.BLOCK_MIND),
+    SKILL_MIND_CHEMISTRY(VTValueTag.SKILL, VTValueTag.BLOCK_MIND),
+    SKILL_MIND_AUTOIMMERSION(VTValueTag.SKILL, VTValueTag.BLOCK_MIND, VTValueTag.SPECIAL_SKILL),
 
-    BLOCK_EGO(VTValueTag.BLOCK),
+    BLOCK_EGO(VTValueTag.BLOCK, VTValueTag.BLOCK_EGO),
     SKILL_EGO_MANIPULATION(VTValueTag.SKILL, VTValueTag.BLOCK_EGO),
     SKILL_EGO_PSYCHOANALYSIS(VTValueTag.SKILL, VTValueTag.BLOCK_EGO),
     SKILL_EGO_CREATIVITY(VTValueTag.SKILL, VTValueTag.BLOCK_EGO),
@@ -98,5 +100,20 @@ public enum VTValue {
 
     public boolean containsTag(VTValueTag tag) {
         return Arrays.stream(tags).anyMatch(x -> x == tag);
+    }
+
+    public VTCharacterValueRulesChainState adaptToVTCharacterValueRulesChainState(){
+
+        if(containsTag(VTValueTag.BLOCK_ENDURANCE) && containsTag(VTValueTag.SKILL)) return VTCharacterValueRulesChainState.EDIT_SKILL_ENDURANCE;
+        if(containsTag(VTValueTag.BLOCK_SWIFTNESS) && containsTag(VTValueTag.SKILL)) return VTCharacterValueRulesChainState.EDIT_SKILL_SWIFTNESS;
+        if(containsTag(VTValueTag.BLOCK_MIND) && containsTag(VTValueTag.SKILL)) return VTCharacterValueRulesChainState.EDIT_SKILL_MIND;
+        if(containsTag(VTValueTag.BLOCK_EGO) && containsTag(VTValueTag.SKILL)) return VTCharacterValueRulesChainState.EDIT_SKILL_EGO;
+
+        if(containsTag(VTValueTag.BLOCK_ENDURANCE) && containsTag(VTValueTag.BLOCK)) return VTCharacterValueRulesChainState.EDIT_BLOCK_ENDURANCE;
+        if(containsTag(VTValueTag.BLOCK_SWIFTNESS) && containsTag(VTValueTag.BLOCK)) return VTCharacterValueRulesChainState.EDIT_BLOCK_ENDURANCE;
+        if(containsTag(VTValueTag.BLOCK_MIND) && containsTag(VTValueTag.BLOCK)) return VTCharacterValueRulesChainState.EDIT_BLOCK_ENDURANCE;
+        if(containsTag(VTValueTag.BLOCK_EGO) && containsTag(VTValueTag.BLOCK)) return VTCharacterValueRulesChainState.EDIT_BLOCK_ENDURANCE;
+
+        throw new IllegalArgumentException(this.toString());
     }
 }

@@ -1,5 +1,7 @@
 package game.vt.silence.game_mech.service.administratio;
 
+import game.vt.silence.game_mech.model.VTValue;
+import game.vt.silence.game_mech.model.VTValueTag;
 import game.vt.silence.game_mech.service.operarius.VTCharacterService;
 import game.vt.silence.game_mech.service.operarius.VTCharacterValueService;
 import game.vt.silence.game_mech.vtcharacterrules.VTCharacterValueRulesChain;
@@ -25,14 +27,16 @@ public class VTCharacterValueEditorServiceImpl implements VTCharacterValueEditor
 
         VTCharacter vtCharacter = vtCharacterService.getVTCharacterByName(charName);
         List<VTCharacterValue> vtCharacterValues = vtCharacterValueService.getVTCharacterValuesByVTCharacter(vtCharacter);
+        VTValue vtValue = VTValue.valueOf(valueName.toUpperCase());
+        //System.out.println(vtValue + " -=to edit=-");
         VTCharacterValue vtCharacterValue = vtCharacterValues
                 .stream()
-                .filter(x -> x.getName().equalsIgnoreCase(valueName))
+                //.filter(x -> x.getName().equalsIgnoreCase(valueName))
+                .filter(x -> x.equalsVTValue(vtValue))
                 .findAny()
                 .get();
 
         vtCharacterValueRulesChain.doChain(vtCharacterValues, vtCharacterValue, upDown);
-
         vtCharacterValueService.save(vtCharacterValues);
     }
 

@@ -22,7 +22,7 @@ public class DefaultVTCharacterValuesLoader {
         valuesStr = new String(in.readAllBytes());
     }
 
-    public List<VTCharacterValue> getAsList() {
+    /*public List<VTCharacterValue> getAsList() {
         ArrayList<VTCharacterValue> vtCharacterValues = new ArrayList<>();
 
         for (String line : valuesStr.split("\n")) {
@@ -35,5 +35,5 @@ public class DefaultVTCharacterValuesLoader {
             vtCharacterValues.add(vtCharacterValue);
         }
         return vtCharacterValues;
-    }
+    }*/
 }

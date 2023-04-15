@@ -3,6 +3,7 @@ package game.vt.silence.game_mech.vtcharacterrules;
 import game.vt.silence.exceptions.VTCharacterValueBreakRuleException;
 import game.vt.silence.exceptions.VTCharacterValueNotFoundException;
 import game.vt.silence.game_mech.model.VTCharacterValue;
+import game.vt.silence.game_mech.model.VTValue;
 import game.vt.silence.game_mech.vtcharacterrules.rules.VTCharacterValueRule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,10 +32,10 @@ public class VTCharacterValueRulesChain {
         else
             upDownArg = -1;
 
-        Map<String, VTCharacterValue> vtValueMap = vtCharacterValues.stream()
-                .collect(Collectors.toMap(x -> x.getName(), Function.identity()));
+        Map<VTValue, VTCharacterValue> vtValueMap = vtCharacterValues.stream()
+                .collect(Collectors.toMap(x -> x.getValueName(), Function.identity()));
 
-        VTCharacterValueRulesChainState state = new VTCharacterValueRulesChainState();
+        VTCharacterValueRulesChainStateHandler state = new VTCharacterValueRulesChainStateHandler();
         rules
                 .stream()
                 .sorted(Comparator.comparingInt(VTCharacterValueRule::getOrder))
@@ -42,7 +43,8 @@ public class VTCharacterValueRulesChain {
                 //System.out.println(vtCharacterValue.getValue() + " in " + x.getClass().getSimpleName());
                 });
 
-        if (state.getState() == VTCharacterValueRulesChainStates.NOT_EDIT)
+        //if (state.getState() == VTCharacterValueRulesChainState.NOT_EDIT)
+        if(!state.isEdit())
             throw new VTCharacterValueNotFoundException();
     }
 
