@@ -34,7 +34,7 @@ public class VTCharacterCreationServiceImpl implements VTCharacterCreationServic
             throw new VTCharacterNameOccupiedException();
         }
 
-        if (vtUserRepo.existsByUsername(vtUserName)) {
+        if (!vtUserRepo.existsByUsername(vtUserName)) {
             throw new VTUserNotFoundException();
         }
 
@@ -50,9 +50,10 @@ public class VTCharacterCreationServiceImpl implements VTCharacterCreationServic
 
         vtUser.addVT_Character(vtCharacter);
 
-        vtUserRepo.save(vtUser);
-        vtCharacterRepo.save(vtCharacter);
         vtCharacterValueRepo.saveAll(vtCharacterValueList);
+        vtCharacterRepo.save(vtCharacter);
+        vtUserRepo.save(vtUser);
+
     }
 
 }
