@@ -25,8 +25,6 @@ public class VTCharacterInitServiceImpl implements VTCharacterInitService {
     VTCharacterValueService vtCharacterValueService;
     @Autowired
     VTUserService vtUserService;
-    @Autowired
-    SecurityService securityService;
 
     @Override
     public void init(String vtCharacterName, String vtUserName) {
