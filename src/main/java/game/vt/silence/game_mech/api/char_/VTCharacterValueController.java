@@ -5,7 +5,7 @@ import game.vt.silence.exceptions.handlers.StatusType;
 import game.vt.silence.game_mech.api.char_.DTO.CharEditRQ;
 import game.vt.silence.game_mech.api.char_.DTO.CharValues;
 import game.vt.silence.game_mech.model.VTCharacterValue;
-import game.vt.silence.game_mech.service.administratio.VTCharacterValueEditorService;
+import game.vt.silence.game_mech.service.transactions.VTCharacterValueEditionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +17,7 @@ import java.util.List;
 public class VTCharacterValueController {
 
     @Autowired
-    VTCharacterValueEditorService vtCharacterValueEditorService;
+    VTCharacterValueEditionService vtCharacterValueEditorService;
 
     @PostMapping("/char/edit")
     public StatusRS charEdit(@RequestBody CharEditRQ request) {

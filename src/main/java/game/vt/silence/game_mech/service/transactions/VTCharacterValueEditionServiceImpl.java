@@ -1,7 +1,6 @@
-package game.vt.silence.game_mech.service.administratio;
+package game.vt.silence.game_mech.service.transactions;
 
 import game.vt.silence.game_mech.model.VTValue;
-import game.vt.silence.game_mech.model.VTValueTag;
 import game.vt.silence.game_mech.service.operarius.VTCharacterService;
 import game.vt.silence.game_mech.service.operarius.VTCharacterValueService;
 import game.vt.silence.game_mech.vtcharacterrules.VTCharacterValueRulesChain;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class VTCharacterValueEditorServiceImpl implements VTCharacterValueEditorService {
+public class VTCharacterValueEditionServiceImpl implements VTCharacterValueEditionService {
 
     @Autowired
     VTCharacterService vtCharacterService;
