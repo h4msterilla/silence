@@ -12,6 +12,8 @@ public interface SecurityService {
 
     void regUser(String username, String password);
 
+    boolean regUser4Vaadin(String username, String password);
+
     void autoLoginByJWT(String username, String password, HttpServletResponse response);
 
     boolean autoLogin(String username, String password);

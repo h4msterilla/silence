@@ -71,6 +71,21 @@ public class SecurityServiceImpl implements SecurityService {
         logger.info("reg new user: {}", username);
     }
 
+    @Override
+    public boolean regUser4Vaadin(String username, String password){
+
+        if(userService.existsByUsername(username)) return false;
+
+        VTUser vt_user = new VTUser();
+        vt_user.setUsername(username);
+        vt_user.setPassword(password);
+        vt_user.setEncodedPassword(encoder.encode(password));
+
+        userService.save(vt_user);
+        logger.info("reg new user: {}", username);
+        return true;
+    }
+
 
     @Override
     public void autoLoginByJWT(String username, String password, HttpServletResponse response) {
