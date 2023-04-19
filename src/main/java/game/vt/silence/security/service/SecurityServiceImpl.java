@@ -73,7 +73,7 @@ public class SecurityServiceImpl implements SecurityService {
 
 
     @Override
-    public void autoLogin(String username, String password, HttpServletResponse response) {
+    public void autoLoginByJWT(String username, String password, HttpServletResponse response) {
 
         if (!userService.existsByUsername(username)) throw new VTUserNotFoundException();
 
@@ -90,8 +90,26 @@ public class SecurityServiceImpl implements SecurityService {
 
         SecurityContextHolder.getContext().setAuthentication(token);
         jwtUtil.setJwtHeader(response, userDetails);
-        logger.info("Auto login {} successfully!", username);
+        logger.info("Auto login by JWT {} successfully!", username);
 
+    }
+
+    public boolean autoLogin(String username, String password){
+
+        if(!userService.existsByUsername(username)) return false;
+
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
+
+        try{
+            authenticationManager.authenticate(token);
+        }catch (AuthenticationException e){
+            return false;
+        }
+
+        SecurityContextHolder.getContext().setAuthentication(token);
+        logger.info("Auto login {} successfully!", username);
+        return true;
     }
 
     @Override

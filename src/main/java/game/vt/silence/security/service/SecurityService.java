@@ -12,7 +12,9 @@ public interface SecurityService {
 
     void regUser(String username, String password);
 
-    void autoLogin(String username, String password, HttpServletResponse response);
+    void autoLoginByJWT(String username, String password, HttpServletResponse response);
+
+    boolean autoLogin(String username, String password);
 
     void nonPassAutoLogin(String username, HttpServletResponse response);
 

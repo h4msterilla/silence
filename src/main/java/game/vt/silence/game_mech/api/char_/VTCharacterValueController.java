@@ -19,13 +19,13 @@ public class VTCharacterValueController {
     @Autowired
     VTCharacterValueEditionService vtCharacterValueEditorService;
 
-    @PostMapping("/char/edit")
+    @PostMapping("/api/char/edit")
     public StatusRS charEdit(@RequestBody CharEditRQ request) {
         vtCharacterValueEditorService.editValue(request.getCharname(), request.getSkillname(), request.getValue());
         return new StatusRS(StatusType.SUCCESS, "Value edit success");
     }
 
-    @PostMapping("/char/values")
+    @PostMapping("/api/char/values")
     public List<VTCharacterValue> charValues(@RequestBody CharValues request) {
         return vtCharacterValueEditorService.getValues(request.getCharname());
     }

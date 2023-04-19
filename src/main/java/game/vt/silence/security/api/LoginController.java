@@ -17,9 +17,9 @@ public class LoginController {
     @Autowired
     SecurityService securityService;
 
-    @PostMapping("/login")
+    @PostMapping("/api/login")
     public StatusRS login(@RequestBody Login_RQ request, HttpServletResponse httpServletResponse) {
-        securityService.autoLogin(request.getUsername(), request.getPassword(), httpServletResponse);
+        securityService.autoLoginByJWT(request.getUsername(), request.getPassword(), httpServletResponse);
 
         return new StatusRS(StatusType.SUCCESS, "login success");
     }

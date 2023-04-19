@@ -31,20 +31,20 @@ public class VTCharacterController {
     @Autowired
     SecurityService securityService;
 
-    @PostMapping("/char/create")
+    @PostMapping("/api/char/create")
     public StatusRS charCreate(@RequestBody CharCreateRQ request) {
-        System.out.println(securityService.findLoggedInVT_User().getUsername());
+        //System.out.println(securityService.findLoggedInVT_User().getUsername());
         //vtCharacterInitService.init(request.getCharname(), securityService.findLoggedInVT_User().getUsername());
         vtCharacterCreationService.create(request.getCharname(), securityService.findLoggedInUsername());
         return new StatusRS(StatusType.SUCCESS, "Character create success");
     }
 
-    @PostMapping("/char")
+    @PostMapping("/api/char")
     public VTCharacter charFind(@RequestBody CharRQ request) {
         return characterService.getVTCharacterByName(request.getCharname());
     }
 
-    @PostMapping("/char/list")
+    @PostMapping("/api/char/list")
     public List<VTCharacter> charList(@RequestBody CharListRQ request) {
         return vtUserService.getVTCharactersByUsername(request.getUsername());
     }

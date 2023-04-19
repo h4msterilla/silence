@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity//(debug = true)
@@ -30,10 +31,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .csrf().disable()
+                //.formLogin().disable()
                 .authorizeRequests()
-                .antMatchers("/login","/reg","/js/login.js","/js/reg.js").permitAll()
+                .antMatchers("/api/login","/api/reg"/*,"/js/login.js","/js/reg.js"*/,"/").permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/VAADIN/**")).permitAll()
                 .anyRequest().authenticated()
+                //.anyRequest().permitAll()
                 .and().logout().logoutUrl("/logout")
+                //.and().formLogin().loginPage("/")
         ;
 
         http.addFilterBefore(getAuthJwtFilter(), UsernamePasswordAuthenticationFilter.class);

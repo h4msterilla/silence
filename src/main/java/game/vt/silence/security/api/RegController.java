@@ -19,7 +19,7 @@ public class RegController {
     @Autowired
     SecurityService securityService;
 
-    @PostMapping("/reg")
+    @PostMapping("/api/reg")
     public StatusRS reg(@RequestBody Reg_RQ request, HttpServletResponse httpServletResponse) {
 
         UsernameValidator.validate(request.getUsername());
@@ -27,7 +27,7 @@ public class RegController {
 
         securityService.regUser(request.getUsername(), request.getPassword());
 
-        securityService.autoLogin(request.getUsername(), request.getPassword(), httpServletResponse);
+        securityService.autoLoginByJWT(request.getUsername(), request.getPassword(), httpServletResponse);
 
         return new StatusRS(StatusType.SUCCESS, "register success");
     }
