@@ -26,7 +26,7 @@ public class LogRegMenu extends VerticalLayout {
             getThemeList().set(Lumo.DARK, true);
         else
             getThemeList().set(Lumo.DARK, false);
-    });*/ new ThemeButton(this);
+    });*/ new ThemeButton(/*this*/);
 
     public LogRegMenu() {
 

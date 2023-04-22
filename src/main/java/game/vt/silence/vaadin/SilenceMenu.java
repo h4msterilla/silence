@@ -14,7 +14,7 @@ public class SilenceMenu extends VerticalLayout {
 
         add(new VTCharacterSelectMenu());
 
-        add(new ThemeButton(this));
+        add(new ThemeButton(/*this*/));
 
     }
 
