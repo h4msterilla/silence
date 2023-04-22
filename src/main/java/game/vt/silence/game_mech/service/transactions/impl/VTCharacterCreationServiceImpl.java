@@ -1,4 +1,4 @@
-package game.vt.silence.game_mech.service.transactions;
+package game.vt.silence.game_mech.service.transactions.impl;
 
 import game.vt.silence.exceptions.VTCharacterNameOccupiedException;
 import game.vt.silence.exceptions.VTUserNotFoundException;
@@ -7,6 +7,7 @@ import game.vt.silence.game_mech.model.VTCharacterValue;
 import game.vt.silence.game_mech.model.factories.VTCharacterValueListFactory;
 import game.vt.silence.game_mech.repo.VTCharacterRepo;
 import game.vt.silence.game_mech.repo.VTCharacterValueRepo;
+import game.vt.silence.game_mech.service.transactions.VTCharacterCreationService;
 import game.vt.silence.security.model.VTUser;
 import game.vt.silence.security.repo.VTUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;

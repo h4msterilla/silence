@@ -1,10 +1,11 @@
-package game.vt.silence.game_mech.service.operarius;
+package game.vt.silence.game_mech.service;
 
 import game.vt.silence.exceptions.VTCharacterNameOccupiedException;
 import game.vt.silence.exceptions.VTCharacterNotFoundException;
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.model.VTCharacterValue;
 import game.vt.silence.game_mech.repo.VTCharacterRepo;
+import game.vt.silence.game_mech.service.VTCharacterService;
 import game.vt.silence.security.model.VTUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

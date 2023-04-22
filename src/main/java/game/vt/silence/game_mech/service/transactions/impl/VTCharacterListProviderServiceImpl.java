@@ -1,7 +1,8 @@
-package game.vt.silence.game_mech.service.transactions;
+package game.vt.silence.game_mech.service.transactions.impl;
 
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.repo.VTCharacterRepo;
+import game.vt.silence.game_mech.service.transactions.VTCharacterListProviderService;
 import game.vt.silence.security.model.VTUser;
 import game.vt.silence.security.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;

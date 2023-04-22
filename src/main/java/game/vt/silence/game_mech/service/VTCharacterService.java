@@ -1,4 +1,4 @@
-package game.vt.silence.game_mech.service.operarius;
+package game.vt.silence.game_mech.service;
 
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.model.VTCharacterValue;

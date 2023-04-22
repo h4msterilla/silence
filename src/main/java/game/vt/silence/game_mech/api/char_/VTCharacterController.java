@@ -6,7 +6,7 @@ import game.vt.silence.game_mech.api.char_.DTO.CharCreateRQ;
 import game.vt.silence.game_mech.api.char_.DTO.CharListRQ;
 import game.vt.silence.game_mech.api.char_.DTO.CharRQ;
 import game.vt.silence.game_mech.model.VTCharacter;
-import game.vt.silence.game_mech.service.operarius.VTCharacterService;
+import game.vt.silence.game_mech.service.VTCharacterService;
 import game.vt.silence.game_mech.service.transactions.VTCharacterCreationService;
 import game.vt.silence.security.service.SecurityService;
 import game.vt.silence.security.service.VTUserService;

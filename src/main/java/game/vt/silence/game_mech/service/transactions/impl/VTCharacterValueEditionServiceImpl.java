@@ -1,8 +1,9 @@
-package game.vt.silence.game_mech.service.transactions;
+package game.vt.silence.game_mech.service.transactions.impl;
 
 import game.vt.silence.game_mech.model.VTValue;
-import game.vt.silence.game_mech.service.operarius.VTCharacterService;
-import game.vt.silence.game_mech.service.operarius.VTCharacterValueService;
+import game.vt.silence.game_mech.service.VTCharacterService;
+import game.vt.silence.game_mech.service.VTCharacterValueService;
+import game.vt.silence.game_mech.service.transactions.VTCharacterValueEditionService;
 import game.vt.silence.game_mech.vtcharacterrules.VTCharacterValueRulesChain;
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.model.VTCharacterValue;

@@ -1,9 +1,7 @@
 package game.vt.silence.game_mech.model.factories;
 
-import game.vt.silence.game_mech.model.VTCharacter;
-import game.vt.silence.game_mech.model.VTCharacterValue;
-import game.vt.silence.game_mech.service.operarius.VTCharacterService;
-import game.vt.silence.game_mech.service.operarius.VTCharacterValueService;
+import game.vt.silence.game_mech.service.VTCharacterService;
+import game.vt.silence.game_mech.service.VTCharacterValueService;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

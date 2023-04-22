@@ -1,12 +1,12 @@
-package game.vt.silence.game_mech.service.operarius;
+package game.vt.silence.game_mech.service;
 
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.model.VTCharacterValue;
 import game.vt.silence.game_mech.model.factories.VTCharacterValueListFactory;
 import game.vt.silence.game_mech.repo.VTCharacterValueRepo;
+import game.vt.silence.game_mech.service.VTCharacterValueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
