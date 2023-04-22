@@ -1,6 +1,7 @@
 package game.vt.silence.game_mech.repo;
 
 import game.vt.silence.game_mech.model.VTCharacter;
+import game.vt.silence.security.model.VTUser;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -17,4 +18,8 @@ public interface VTCharacterRepo extends CrudRepository<VTCharacter, Long> {
     @Query(value = "SELECT charname FROM vtcharacter",
     nativeQuery = true)
     List<String> findAllCharname();
+
+    List<VTCharacter> findAll();
+
+    List<VTCharacter> findByVtUser(VTUser vtUser);
 }

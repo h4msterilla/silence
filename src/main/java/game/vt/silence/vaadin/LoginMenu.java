@@ -24,6 +24,7 @@ public class LoginMenu extends VerticalLayout {
     private void login() {
         if (securityService.autoLogin(loginField.getValue(), passwordField.getValue())) {
             Notification.show("login success");
+            getUI().ifPresent(ui -> ui.navigate("silence"));
         } else {
             Notification.show("wrong login or password!");
         }
