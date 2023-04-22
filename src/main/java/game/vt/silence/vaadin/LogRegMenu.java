@@ -20,20 +20,20 @@ public class LogRegMenu extends VerticalLayout {
     private Tabs tabs = new Tabs(loginTab, regTab);
 
     boolean darkTheme = true;
-    private Button themeButton = new Button("", e -> {
+    private Button themeButton = /*new Button("", e -> {
         darkTheme = !darkTheme;
         if (darkTheme)
             getThemeList().set(Lumo.DARK, true);
         else
             getThemeList().set(Lumo.DARK, false);
-    });
+    });*/ new ThemeButton(this);
 
     public LogRegMenu() {
 
-        themeButton.setIcon(new Icon(VaadinIcon.ADJUST));
+        //themeButton.setIcon(new Icon(VaadinIcon.ADJUST));
 
         setSizeFull();
-        getThemeList().set(Lumo.DARK, true);
+        //getThemeList().set(Lumo.DARK, true);
 
         HorizontalLayout horizontalLayout = new HorizontalLayout(themeButton);
         add(horizontalLayout);

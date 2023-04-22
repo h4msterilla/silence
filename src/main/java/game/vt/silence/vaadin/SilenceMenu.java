@@ -8,9 +8,13 @@ import com.vaadin.flow.router.Route;
 public class SilenceMenu extends VerticalLayout {
 
     public SilenceMenu(){
+        setSizeFull();
+
         add(new Label("silence"));
 
         add(new VTCharacterSelectMenu());
+
+        add(new ThemeButton(this));
 
     }
 
