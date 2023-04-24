@@ -42,11 +42,12 @@ public class VitalStatsActualRule implements VTCharacterValueRule {
                 && (vtValueMap.get(VTValue.VITAL_STATS_SANITY_MAX).getValue()
                 + vtValueMap.get(VTValue.VITAL_STATS_SANITY_ADD).getValue()
                 < vtCharacterValue.getValue() + upDownArg))
-            throw new VTCharacterValueBreakRuleException("actual health can not be higher then sum of max and add sanity");
+            throw new VTCharacterValueBreakRuleException("actual sanity can not be higher then sum of max and add sanity");
 
         //vtCharacterValue.setValue(vtCharacterValue.getValue() + upDownArg);
         vtCharacterValue.modifyValueBy(upDownArg);
-        state.setState(VTCharacterValueRulesChainState.EDIT);
+        state.add(VTCharacterValueRulesChainState.EDIT);
+        //state.setState(VTCharacterValueRulesChainState.EDIT);
     }
 
     @Override

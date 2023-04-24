@@ -23,7 +23,8 @@ public class ExpMaxRule implements VTCharacterValueRule {
 
         //vtCharacterValue.setValue(vtCharacterValue.getValue() + upDownArg);
         vtCharacterValue.modifyValueBy(upDownArg);
-        state.setState(VTCharacterValueRulesChainState.EDIT);
+        state.add(VTCharacterValueRulesChainState.EDIT);
+        //state.setState(VTCharacterValueRulesChainState.EDIT);
     }
 
     @Override

@@ -1,12 +1,12 @@
 package game.vt.silence.game_mech.service.transactions.impl;
 
+import game.vt.silence.game_mech.model.VTCharacter;
+import game.vt.silence.game_mech.model.VTCharacterValue;
 import game.vt.silence.game_mech.model.VTValue;
 import game.vt.silence.game_mech.service.VTCharacterService;
 import game.vt.silence.game_mech.service.VTCharacterValueService;
 import game.vt.silence.game_mech.service.transactions.VTCharacterValueEditionService;
 import game.vt.silence.game_mech.vtcharacterrules.VTCharacterValueRulesChain;
-import game.vt.silence.game_mech.model.VTCharacter;
-import game.vt.silence.game_mech.model.VTCharacterValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +38,14 @@ public class VTCharacterValueEditionServiceImpl implements VTCharacterValueEditi
 
         vtCharacterValueRulesChain.doChain(vtCharacterValues, vtCharacterValue, upDown);
         vtCharacterValueService.save(vtCharacterValues);
+    }
+
+    @Override
+    public void editValue4Vaadin(VTCharacter vtCharacter,List<VTCharacterValue> vtCharacterValueList,VTCharacterValue vtCharacterValue, String upDown) {
+        //System.out.println("here 1 = " + vtCharacterValue.toString());
+        vtCharacterValueRulesChain.doChain(vtCharacterValueList, vtCharacterValue, upDown);
+        //System.out.println("here 2 = " + vtCharacterValueList);
+        vtCharacterValueService.save(vtCharacterValueList);
     }
 
     @Override
