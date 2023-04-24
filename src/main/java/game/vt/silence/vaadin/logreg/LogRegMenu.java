@@ -1,4 +1,4 @@
-package game.vt.silence.vaadin;
+package game.vt.silence.vaadin.logreg;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -6,6 +6,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.Route;
+import game.vt.silence.vaadin.components.ThemeButton;
 
 @Route("")
 public class LogRegMenu extends VerticalLayout {

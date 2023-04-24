@@ -1,4 +1,4 @@
-package game.vt.silence.vaadin;
+package game.vt.silence.vaadin.logreg;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
@@ -11,6 +11,7 @@ import game.vt.silence.exceptions.VTValidationException;
 import game.vt.silence.security.service.SecurityService;
 import game.vt.silence.security.validation.PasswordValidator;
 import game.vt.silence.security.validation.UsernameValidator;
+import game.vt.silence.vaadin.SpringContextProvider;
 
 public class RegMenu extends VerticalLayout {
 

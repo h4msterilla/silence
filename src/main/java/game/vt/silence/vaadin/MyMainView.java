@@ -8,6 +8,7 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
+import game.vt.silence.vaadin.logreg.LoginMenu;
 
 @Route("vaadin")
 public class MyMainView extends VerticalLayout {

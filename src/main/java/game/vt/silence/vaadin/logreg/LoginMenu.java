@@ -1,4 +1,4 @@
-package game.vt.silence.vaadin;
+package game.vt.silence.vaadin.logreg;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
@@ -7,6 +7,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import game.vt.silence.security.service.SecurityService;
+import game.vt.silence.vaadin.SpringContextProvider;
 
 public class LoginMenu extends VerticalLayout {
 
