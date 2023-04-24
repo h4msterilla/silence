@@ -40,8 +40,8 @@ public class VTCharacterCreationServiceImpl implements VTCharacterCreationServic
         }
 
         List<VTCharacterValue> vtCharacterValueList = vtCharacterValueListFactory.getNewVTCharacterValueList();
-        VTCharacter vtCharacter = new VTCharacter();
         VTUser vtUser = vtUserRepo.findByUsername(vtUserName);
+        VTCharacter vtCharacter = new VTCharacter();
 
         vtCharacter.setCharname(vtCharacterName);
         vtCharacter.setValues(vtCharacterValueList);
@@ -51,6 +51,29 @@ public class VTCharacterCreationServiceImpl implements VTCharacterCreationServic
 
         vtUser.addVT_Character(vtCharacter);
 
+        vtCharacterValueRepo.saveAll(vtCharacterValueList);
+        vtCharacterRepo.save(vtCharacter);
+        vtUserRepo.save(vtUser);
+
+    }
+
+    @Transactional
+    public void create4vaadin(VTUser vtUser, List<VTCharacter> vtCharacterList){
+
+        List<VTCharacterValue> vtCharacterValueList = vtCharacterValueListFactory.getNewVTCharacterValueList();
+        //VTUser vtUser = vtUserRepo.findByUsername(vtUserName);
+        VTCharacter vtCharacter = new VTCharacter();
+
+        vtCharacter.setCharname("Incognito Nameless");
+        vtCharacter.setValues(vtCharacterValueList);
+        vtCharacter.setVtUser(vtUser);
+
+        vtCharacterValueList.forEach(x -> x.setVtCharacter(vtCharacter));
+
+        //vtUser.getVtCharacterList().add(vtCharacter);
+        //vtUser.addVT_Character(vtCharacter);
+
+        vtCharacterList.add(vtCharacter);
         vtCharacterValueRepo.saveAll(vtCharacterValueList);
         vtCharacterRepo.save(vtCharacter);
         vtUserRepo.save(vtUser);

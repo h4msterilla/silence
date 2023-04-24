@@ -1,6 +1,7 @@
 package game.vt.silence.vaadin;
 
 import game.vt.silence.game_mech.service.VTCharacterValueService;
+import game.vt.silence.game_mech.service.transactions.VTCharacterCreationService;
 import game.vt.silence.game_mech.service.transactions.VTCharacterListProviderService;
 import game.vt.silence.game_mech.service.transactions.VTCharacterValueEditionService;
 import game.vt.silence.security.service.SecurityService;
@@ -15,17 +16,20 @@ public class SpringContextProvider {
     private static VTCharacterListProviderService vtCharacterListProviderService;
     private static VTCharacterValueService vtCharacterValueService;
     private static VTCharacterValueEditionService vtCharacterValueEditionService;
+    private static VTCharacterCreationService vtCharacterCreationService;
 
     public SpringContextProvider(SecurityService securityService,
                                  VTUserService vtUserService,
                                  VTCharacterListProviderService vtCharacterListProviderService,
                                  VTCharacterValueService vtCharacterValueService,
-                                 VTCharacterValueEditionService vtCharacterValueEditionService) {
+                                 VTCharacterValueEditionService vtCharacterValueEditionService,
+                                 VTCharacterCreationService vtCharacterCreationService) {
         this.securityService = securityService;
         this.vtUserService = vtUserService;
         this.vtCharacterListProviderService = vtCharacterListProviderService;
         this.vtCharacterValueService = vtCharacterValueService;
         this.vtCharacterValueEditionService = vtCharacterValueEditionService;
+        this.vtCharacterCreationService = vtCharacterCreationService;
     }
 
     public static SecurityService getSecurityService() {
@@ -48,4 +52,7 @@ public class SpringContextProvider {
         return vtCharacterValueEditionService;
     }
 
+    public static VTCharacterCreationService getVtCharacterCreationService(){
+        return vtCharacterCreationService;
+    }
 }

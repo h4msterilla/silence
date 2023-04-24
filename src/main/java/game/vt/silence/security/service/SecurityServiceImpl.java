@@ -42,7 +42,7 @@ public class SecurityServiceImpl implements SecurityService {
             return null;
         }
         if (s.equalsIgnoreCase("anonymousUser")) s = null;
-        logger.info("findLoggedInUsername = {}", s);
+        //logger.info("findLoggedInUsername = {}", s);
         return s;
     }
 
