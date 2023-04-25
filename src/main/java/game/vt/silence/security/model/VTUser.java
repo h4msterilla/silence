@@ -38,4 +38,8 @@ public class VTUser {
        vtCharacterList.add(character);
     }
 
+    public void removeVTCharacter(VTCharacter character){
+        vtCharacterList.remove(character);
+    }
+
 }

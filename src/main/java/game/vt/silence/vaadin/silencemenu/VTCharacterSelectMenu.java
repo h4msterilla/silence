@@ -4,10 +4,12 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import game.vt.silence.game_mech.model.VTCharacter;
 import game.vt.silence.game_mech.service.transactions.VTCharacterCreationService;
 import game.vt.silence.game_mech.service.transactions.VTCharacterListProviderService;
+import game.vt.silence.game_mech.service.transactions.VTCharacterRetireService;
 import game.vt.silence.security.model.VTUser;
 import game.vt.silence.security.service.SecurityService;
 import game.vt.silence.vaadin.SpringContextProvider;
@@ -19,6 +21,7 @@ public class VTCharacterSelectMenu extends VerticalLayout {
 
     private VTCharacterListProviderService listProvider;
     private VTCharacterCreationService vtCharacterCreationService;
+    private VTCharacterRetireService vtCharacterRetireService;
     private SecurityService securityService;
     private VTUser vtUser;
     private List<VTCharacter> characterList;
@@ -26,11 +29,14 @@ public class VTCharacterSelectMenu extends VerticalLayout {
     private Grid<VTCharacter> grid = new Grid<>(VTCharacter.class, false);
 
     private Button characterAddButton = new Button("add Character");
+    private Button characterRetireButton = new Button("retire Character");
+    private HorizontalLayout characterButtonLayout = new HorizontalLayout(characterAddButton, characterRetireButton);
 
     public VTCharacterSelectMenu() {
         listProvider = SpringContextProvider.getVtCharacterListProviderService();
         vtCharacterCreationService = SpringContextProvider.getVtCharacterCreationService();
         securityService = SpringContextProvider.getSecurityService();
+        vtCharacterRetireService = SpringContextProvider.getVtCharacterRetireService();
 
         vtUser = securityService.findLoggedInVT_User();
         characterList = listProvider.getVTCharacterListByLogInUser();
@@ -48,10 +54,22 @@ public class VTCharacterSelectMenu extends VerticalLayout {
         characterAddButton.addClickListener(e -> {
             vtCharacterCreationService.create4vaadin(vtUser, characterList);
             grid.getDataProvider().refreshAll();
+            Notification.show("create new Character");
         });
 
-        setAlignSelf(Alignment.END, characterAddButton);
-        add(characterAddButton);
+        characterRetireButton.addClickListener(e -> {
+            VTCharacter selectedCharacter = getSelectedCharacter();
+            if(selectedCharacter == null){
+                Notification.show("select any Character to retire");
+                return;
+            }
+            vtCharacterRetireService.retire4vaadin(vtUser, characterList, selectedCharacter);
+            grid.getDataProvider().refreshAll();
+            Notification.show(selectedCharacter.getCharname() + "retired");
+        });
+
+        setAlignSelf(Alignment.END, characterButtonLayout);
+        add(characterButtonLayout);
     }
 
     public VTCharacter getSelectedCharacter() {
