@@ -1,6 +1,7 @@
 package game.vt.silence.vaadin.silencemenu;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.notification.Notification;
@@ -63,9 +64,20 @@ public class VTCharacterSelectMenu extends VerticalLayout {
                 Notification.show("select any Character to retire");
                 return;
             }
-            vtCharacterRetireService.retire4vaadin(vtUser, characterList, selectedCharacter);
-            grid.getDataProvider().refreshAll();
-            Notification.show(selectedCharacter.getCharname() + "retired");
+
+            ConfirmDialog dialog = new ConfirmDialog();
+            dialog.setHeader("Retire Character");
+            dialog.setText("Are you sure you want to retire "+ selectedCharacter.getCharname() + "?");
+            dialog.setCancelable(true);
+            dialog.setConfirmText("Retire");
+            dialog.setConfirmButtonTheme("error primary");
+            dialog.addConfirmListener(confirmEvent ->{
+                vtCharacterRetireService.retire4vaadin(vtUser, characterList, selectedCharacter);
+                grid.getDataProvider().refreshAll();
+                Notification.show(selectedCharacter.getCharname() + "retired");
+                grid.select(null);
+            });
+            dialog.open();
         });
 
         setAlignSelf(Alignment.END, characterButtonLayout);
