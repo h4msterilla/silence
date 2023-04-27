@@ -9,6 +9,6 @@ public interface VTCharacterCreationService {
 
     void create(String vtCharacterName, String vtUserName);
 
-    void create4vaadin(VTUser vtUser, List<VTCharacter> vtCharacterList);
+    VTCharacter create4vaadin(VTUser vtUser, List<VTCharacter> vtCharacterList);
 
 }

@@ -53,9 +53,9 @@ public class VTCharacterSelectMenu extends VerticalLayout {
         grid.addThemeVariants(GridVariant.LUMO_COLUMN_BORDERS);
 
         characterAddButton.addClickListener(e -> {
-            vtCharacterCreationService.create4vaadin(vtUser, characterList);
+            VTCharacter createCharacter = vtCharacterCreationService.create4vaadin(vtUser, characterList);
             grid.getDataProvider().refreshAll();
-            Notification.show("create new Character");
+            Notification.show("create new " + createCharacter.getCharname());
         });
 
         characterRetireButton.addClickListener(e -> {
@@ -74,7 +74,7 @@ public class VTCharacterSelectMenu extends VerticalLayout {
             dialog.addConfirmListener(confirmEvent ->{
                 vtCharacterRetireService.retire4vaadin(vtUser, characterList, selectedCharacter);
                 grid.getDataProvider().refreshAll();
-                Notification.show(selectedCharacter.getCharname() + "retired");
+                Notification.show(selectedCharacter.getCharname() + " retired");
                 grid.select(null);
             });
             dialog.open();

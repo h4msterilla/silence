@@ -10,6 +10,7 @@ import game.vt.silence.game_mech.repo.VTCharacterValueRepo;
 import game.vt.silence.game_mech.service.transactions.VTCharacterCreationService;
 import game.vt.silence.security.model.VTUser;
 import game.vt.silence.security.repo.VTUserRepo;
+import game.vt.silence.vaadin.silencemenu.IncognitoNamesGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,13 +59,13 @@ public class VTCharacterCreationServiceImpl implements VTCharacterCreationServic
     }
 
     @Transactional
-    public void create4vaadin(VTUser vtUser, List<VTCharacter> vtCharacterList){
+    public VTCharacter create4vaadin(VTUser vtUser, List<VTCharacter> vtCharacterList){
 
         List<VTCharacterValue> vtCharacterValueList = vtCharacterValueListFactory.getNewVTCharacterValueList();
         //VTUser vtUser = vtUserRepo.findByUsername(vtUserName);
         VTCharacter vtCharacter = new VTCharacter();
 
-        vtCharacter.setCharname("Incognito Nameless");
+        vtCharacter.setCharname(IncognitoNamesGenerator.getName());
         vtCharacter.setValues(vtCharacterValueList);
         vtCharacter.setVtUser(vtUser);
 
@@ -78,6 +79,7 @@ public class VTCharacterCreationServiceImpl implements VTCharacterCreationServic
         vtCharacterRepo.save(vtCharacter);
         vtUserRepo.save(vtUser);
 
+        return vtCharacter;
     }
 
 }
