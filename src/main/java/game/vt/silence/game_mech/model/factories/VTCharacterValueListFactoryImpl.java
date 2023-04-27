@@ -1,7 +1,7 @@
 package game.vt.silence.game_mech.model.factories;
 
-import game.vt.silence.game_mech.model.VTCharacterValue;
-import game.vt.silence.game_mech.model.VTValue;
+import game.vt.silence.game_mech.model.values.VTCharacterValue;
+import game.vt.silence.game_mech.model.values.VTValue;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

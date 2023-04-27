@@ -1,6 +1,5 @@
 package game.vt.silence.beans;
 
-import game.vt.silence.game_mech.model.VTCharacterValue;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
@@ -8,8 +7,6 @@ import org.springframework.util.ResourceUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class DefaultVTCharacterValuesLoader {

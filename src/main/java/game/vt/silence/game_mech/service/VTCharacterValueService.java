@@ -1,7 +1,7 @@
 package game.vt.silence.game_mech.service;
 
 import game.vt.silence.game_mech.model.VTCharacter;
-import game.vt.silence.game_mech.model.VTCharacterValue;
+import game.vt.silence.game_mech.model.values.VTCharacterValue;
 
 import java.util.List;
 

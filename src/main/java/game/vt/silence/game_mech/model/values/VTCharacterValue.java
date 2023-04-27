@@ -1,6 +1,7 @@
-package game.vt.silence.game_mech.model;
+package game.vt.silence.game_mech.model.values;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import game.vt.silence.game_mech.model.VTCharacter;
 import lombok.*;
 
 import javax.persistence.*;

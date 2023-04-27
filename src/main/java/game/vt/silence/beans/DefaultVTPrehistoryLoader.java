@@ -1,6 +1,6 @@
 package game.vt.silence.beans;
 
-import game.vt.silence.game_mech.model.VTPrehistoryEpisode;
+import game.vt.silence.game_mech.model.prehistory.VTPrehistoryEpisode;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;

@@ -4,7 +4,7 @@ import game.vt.silence.exceptions.handlers.StatusRS;
 import game.vt.silence.exceptions.handlers.StatusType;
 import game.vt.silence.game_mech.api.char_.DTO.CharEditRQ;
 import game.vt.silence.game_mech.api.char_.DTO.CharValues;
-import game.vt.silence.game_mech.model.VTCharacterValue;
+import game.vt.silence.game_mech.model.values.VTCharacterValue;
 import game.vt.silence.game_mech.service.transactions.VTCharacterValueEditionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,4 +1,4 @@
-package game.vt.silence.game_mech.model;
+package game.vt.silence.game_mech.model.prehistory;
 
 import lombok.Getter;
 import lombok.Setter;

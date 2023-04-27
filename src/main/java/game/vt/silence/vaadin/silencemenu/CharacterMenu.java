@@ -8,7 +8,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import game.vt.silence.exceptions.VTCharacterValueBreakRuleException;
 import game.vt.silence.game_mech.model.VTCharacter;
-import game.vt.silence.game_mech.model.VTCharacterValue;
+import game.vt.silence.game_mech.model.values.VTCharacterValue;
 import game.vt.silence.game_mech.service.VTCharacterValueService;
 import game.vt.silence.game_mech.service.transactions.VTCharacterValueEditionService;
 import game.vt.silence.vaadin.SpringContextProvider;

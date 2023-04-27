@@ -1,4 +1,4 @@
-package game.vt.silence.game_mech.model;
+package game.vt.silence.game_mech.model.values;
 
 import game.vt.silence.game_mech.vtcharacterrules.VTCharacterValueRulesChainState;
 

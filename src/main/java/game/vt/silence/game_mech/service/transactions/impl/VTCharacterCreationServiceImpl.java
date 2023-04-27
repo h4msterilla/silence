@@ -3,7 +3,7 @@ package game.vt.silence.game_mech.service.transactions.impl;
 import game.vt.silence.exceptions.VTCharacterNameOccupiedException;
 import game.vt.silence.exceptions.VTUserNotFoundException;
 import game.vt.silence.game_mech.model.VTCharacter;
-import game.vt.silence.game_mech.model.VTCharacterValue;
+import game.vt.silence.game_mech.model.values.VTCharacterValue;
 import game.vt.silence.game_mech.model.factories.VTCharacterValueListFactory;
 import game.vt.silence.game_mech.repo.VTCharacterRepo;
 import game.vt.silence.game_mech.repo.VTCharacterValueRepo;

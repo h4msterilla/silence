@@ -1,11 +1,11 @@
 package game.vt.silence.game_mech.vtcharacterrules.rules;
 
 import game.vt.silence.exceptions.VTCharacterValueBreakRuleException;
-import game.vt.silence.game_mech.model.VTValue;
-import game.vt.silence.game_mech.model.VTValueTag;
+import game.vt.silence.game_mech.model.values.VTValue;
+import game.vt.silence.game_mech.model.values.VTValueTag;
 import game.vt.silence.game_mech.vtcharacterrules.VTCharacterValueRulesChainState;
 import game.vt.silence.game_mech.vtcharacterrules.VTCharacterValueRulesChainStateHandler;
-import game.vt.silence.game_mech.model.VTCharacterValue;
+import game.vt.silence.game_mech.model.values.VTCharacterValue;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
