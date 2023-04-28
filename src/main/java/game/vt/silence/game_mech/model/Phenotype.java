@@ -10,7 +10,7 @@ public enum Phenotype {
             new BonusPack(new Bonus(VTValue.SKILL_ENDURANCE_ADAPTABILITY, 1, "capitalist bonus"))
     ),
     STEPPEDWELLER(//Степняк
-
+            
     ),
     ADAPTDWELLER(//Степняк-адаптант
 
