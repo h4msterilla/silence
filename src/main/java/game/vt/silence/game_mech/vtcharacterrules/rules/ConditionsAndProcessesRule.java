@@ -41,6 +41,8 @@ public class ConditionsAndProcessesRule implements VTCharacterValueRule {
             return;
         }
 
+        state.add(VTCharacterValueRulesChainState.EDIT);
+
         //if(true){}
 
     }

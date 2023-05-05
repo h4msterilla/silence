@@ -2,7 +2,7 @@ package game.vt.silence.vaadin.silencemenu;
 
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
-import game.vt.silence.game_mech.model.VTCharacter;
+import game.vt.silence.vaadin.silencemenu.charactermenu.CharacterMenu;
 
 @Route("silence")
 public class SilenceMenu extends VerticalLayout {
@@ -35,7 +35,5 @@ public class SilenceMenu extends VerticalLayout {
 
 
     }
-
-
 
 }

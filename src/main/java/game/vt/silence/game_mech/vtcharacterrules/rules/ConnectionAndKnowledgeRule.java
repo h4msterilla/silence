@@ -25,7 +25,8 @@ public class ConnectionAndKnowledgeRule implements VTCharacterValueRule {
 
         //vtCharacterValue.setValue(vtCharacterValue.getValue() + upDownArg);
         vtCharacterValue.modifyValueBy(upDownArg);
-        state.setState(VTCharacterValueRulesChainState.EDIT);
+        //state.setState(VTCharacterValueRulesChainState.EDIT);
+        state.add(VTCharacterValueRulesChainState.EDIT);
     }
 
     @Override

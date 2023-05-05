@@ -5,10 +5,10 @@ import game.vt.silence.game_mech.vtcharacterrules.VTCharacterValueRulesChainStat
 import java.util.Arrays;
 
 public enum VTValue {
-    VALUE_EXPERIENCE_MAX(VTValueTag.EXPERIENCE),
-    VALUE_EXPERIENCE_ACTUAL(VTValueTag.EXPERIENCE),
-    VALUE_TICKS(),
-    TALENT_LIMIT(),
+    VALUE_EXPERIENCE_MAX(VTValueTag.BASE, VTValueTag.EXPERIENCE),
+    VALUE_EXPERIENCE_ACTUAL(VTValueTag.BASE, VTValueTag.EXPERIENCE),
+    VALUE_TICKS(VTValueTag.BASE),
+    TALENT_LIMIT(VTValueTag.BASE),
 
     VITAL_STATS_HEALTH_MAX(VTValueTag.VITAL_STATE, VTValueTag.HEALTH),
     VITAL_STATS_HEALTH_ACTUAL(VTValueTag.VITAL_STATE, VTValueTag.HEALTH),
